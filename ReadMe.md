@@ -13,6 +13,10 @@ To view an interactive version of this ReadMe, visit
 WeibullR.plotly is still in development. To install the developmental
 version in R:
 
+``` r
+devtools::install_github('paulgovan/weibullr.plotly')
+```
+
 ## Basic Examples
 
 To build a probability plot, first fit a `wblr` object using the

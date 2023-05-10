@@ -1,5 +1,5 @@
 ---
-output: github_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -16,7 +16,7 @@ To view an interactive version of this ReadMe, visit [https://rpubs.com/paulgova
 
 WeibullR.plotly is still in development. To install the developmental version in R:
 
-```{r, echo=FALSE}
+```{r, eval=FALSE}
 devtools::install_github('paulgovan/weibullr.plotly')
 ```
 
