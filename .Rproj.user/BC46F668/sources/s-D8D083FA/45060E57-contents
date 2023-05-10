@@ -1,0 +1,197 @@
+library(WeibullR)
+library(plotly)
+
+plotly_wblr <- function(wblr_obj, susp=NULL, main=NULL, xlab=NULL, ylab=NULL,
+                        col=NULL, signif=NULL, grid=NULL, gridcol=NULL) {
+
+  # Check for a wblr object
+  if(!identical(class(wblr_obj),"wblr")){
+    stop("Argument \"wblr_obj\" is not of class \"wblr\".")
+  }
+
+  # Check for a numeric vector of suspensions
+  if(all(!is.null(susp), !is.numeric(susp))) {
+    stop("Argument \"susp\" must be a numeric vector")
+  }
+
+  # Extract layout options
+  if(is.null(col)) col<-'black'
+  fillcolor <- toRGB(col, 0.2)
+  if(is.null(main)) main<-'Probability Plot'
+  if(is.null(xlab)) xlab<-'Time to Failure'
+  if(is.null(ylab)) ylab<-'Unreliability (%)'
+  if(is.null(signif)) signif<-3
+  if(is.null(grid)) {
+    xgrid = FALSE
+    ygrid = TRUE
+  } else if (isTRUE(grid)) {
+    xgrid = TRUE
+    ygrid = TRUE
+  } else {
+    xgrid = FALSE
+    ygrid = FALSE
+  }
+  if(is.null(gridcol)) gridcol<-'lightgray'
+
+  ## Extract data from the wblr object
+
+  # Check for a fit method
+  if(is.null(wblr_obj$fit)) {
+    datum <- NULL
+    unrel <- NULL
+    lower <- NULL
+    upper <- NULL
+  }
+  # Check for confidence bounds
+  else if(is.null(wblr_obj$fit[[1]]$conf)) {
+    datum <- NULL
+    unrel <- NULL
+    lower <- NULL
+    upper <- NULL
+  }
+
+  # Get fit and upper/lower confidence bounds
+  else {
+    datum <- wblr_obj$fit[[1]]$conf[[1]]$bounds$Datum
+    unrel <- -log(1-wblr_obj$fit[[1]]$conf[[1]]$bounds$unrel)/10
+    lower <- wblr_obj$fit[[1]]$conf[[1]]$bounds$Lower
+    upper <- wblr_obj$fit[[1]]$conf[[1]]$bounds$Upper
+  }
+
+  # Check for intervals
+  if(wblr_obj$interval==0) {
+    time <- wblr_obj$data$dpoints$time
+    ints <- NULL
+    probability <- -log(1-wblr_obj$data$dpoints$ppp)/10
+  } else if(wblr_obj$interval>0) {
+    time <- (wblr_obj$data$dlines$t2+wblr_obj$data$dlines$t1)/2
+    ints <- wblr_obj$data$dlines$t2-wblr_obj$data$dlines$t1
+    probability <- -log(1-wblr_obj$data$dlines$ppp)/10
+  }
+
+  # Get the distribution type
+  if(is.null(wblr_obj$fit)) {
+    param1 <- NULL
+    param2 <- NULL
+    paramval1 <- NULL
+    paramval2 <- NULL
+  }
+  else if(wblr_obj$options$dist=='lognormal') {
+    param1 <- 'Mulog'
+    param2 <- 'Sigmalog'
+    paramval1 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[1]), signif)
+    paramval2 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[2]), signif)
+  } else if(wblr_obj$options$dist=='weibull'){
+    param1 <- 'Beta'
+    param2 <- 'Eta'
+    paramval1 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[2]), signif)
+    paramval2 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[1]), signif)
+  }
+
+  # Check the fit method
+  if(is.null(wblr_obj$fit)) {
+    methlab <- NULL
+    methval <- NULL
+  }
+  else if(wblr_obj$options$method.fit=='rr-xony') {
+    methlab <- 'R^2'
+    methval <-  round(wblr_obj$fit[[1]]$gof$r2, signif)
+  }
+  else if(wblr_obj$options$method.fit=='mle') {
+    methlab <- 'Loglikelihood'
+    methval <- round(wblr_obj$fit[[1]]$gof$loglik, signif)
+  }
+
+  # Draw random values to represent the y-axis positions for the suspensions plot
+  if(is.null(susp)) {
+    susp <- NULL
+    ry <- NULL
+  } else {
+    ry=runif(length(suspensions))
+  }
+  # Build a results table
+  res <- data.frame(Param=c('Ranks', 'n', 'Failures', 'Intervals', 'Suspensions',
+                            'Distribution', 'Method', param1, param2, methlab,
+                            'CI', 'Type'),
+                    Value = c(wblr_obj$options$pp, wblr_obj$n, wblr_obj$fail,
+                              wblr_obj$interval, wblr_obj$cens, wblr_obj$options$dist,
+                              wblr_obj$options$method.fit, paramval1,
+                              paramval2, methval, wblr_obj$options$ci,
+                              wblr_obj$options$method.conf)
+  )
+  # Create the main probability plot
+  probPlot <- plot_ly(x=time, y=probability, type='scatter', mode='markers',
+                      marker=list(color='black'), showlegend=FALSE, error_x=list(array=~ints)
+  ) %>%
+
+    # Specify the main probability plot layout
+    layout(title=main,
+           xaxis = list(type='log', title=xlab, showline=TRUE, mirror='ticks',
+                        showgrid=xgrid, gridcolor=gridcol),
+           yaxis = list(type='log', title=ylab, showline=TRUE, mirror = 'ticks',
+                        size=text, showgrid=ygrid, gridcolor=gridcol)
+    ) %>%
+
+    # Add best fit
+    add_trace(x=datum, y=unrel, mode='lines',
+              marker=list(color='transparent'), line = list(color = col)
+    ) %>%
+
+    # Add lower confidence bound
+    add_trace(x=lower, y=unrel, mode='lines',
+              marker=list(color='transparent'), line=list(color='transparent')
+    ) %>%
+
+    # Add upper confidence bound
+    add_trace(x=upper, y=unrel, mode='lines',
+              fill='tonexty',
+              fillcolor=fillcolor,
+              marker=list(color='transparent'), line=list(color='transparent')
+    )
+
+  # Create the suspension plot
+  suspPlot <- plot_ly(x=susp, y=ry, type='scatter', mode='markers',
+                      marker=list(color='black'), showlegend=FALSE
+  ) %>%
+
+    # Create the suspension plot layout
+    layout(
+      xaxis = list(title=NULL, zeroline=FALSE, showline=TRUE, mirror='ticks',
+                   showticklabels=FALSE, showgrid=FALSE
+      ),
+      yaxis = list(title=NULL, zeroline=FALSE, showline=TRUE, mirror='ticks',
+                   showticklabels=FALSE, showgrid=FALSE
+      )
+    )
+
+  # Create the results table
+  resTab <- plot_ly(type='table',
+                    domain = list(x = c(0.8, 1), y = c(0, 0.85)),
+                    columnwidth=c(50, 50),
+                    header=list(values=names(res), align=c('center','center'),
+                                line=list(width=1, color='black'),
+                                fill=list(color=c("grey", "grey")),
+                                font = list(family="Arial", color="white")
+                    ),
+                    cells=list(values=rbind(res$Param, res$Value),
+                               align=c('center', 'center'),
+                               line=list(color="black", width = 1),
+                               font=list(family="Arial", color=c("black"))
+                    )
+  )
+  # Build the combination plot
+  subplot(probPlot, suspPlot, resTab, nrows=2, titleX=TRUE, titleY=TRUE) %>%
+    layout(xaxis=list(domain=c(0, 0.75)), xaxis2=list(domain=c(0, 0.75)),
+           xaxis3=list(domain=c(0.775, 1)), yaxis=list(domain=c(0, 0.875)),
+           yaxis2=list(domain=c(0.9, 1)), yaxis3=list(domain=c(0, 0.85))
+    )
+
+}
+
+# Generate a wblr object using the WeibullR package
+failures<-c(30, 49, 82, 90, 96)
+suspensions<-c(100, 45, 10)
+wblr_obj <- wblr.conf(wblr.fit(wblr(failures, suspensions)))
+
+# Plot the wblr object using the plot_wblr function
+plotly_wblr(wblr_obj, susp=suspensions, col='darkgreen')

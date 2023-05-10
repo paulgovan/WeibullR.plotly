@@ -1,0 +1,11 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/1040289/1d1599326cb94ba1baf7358e3ec04746
+bundleId: https://api.rpubs.com/api/v1/document/1040289/1d1599326cb94ba1baf7358e3ec04746
+url: http://rpubs.com/paulgovan/1040289
+when: 1683753062.66919
+lastSyncTime: 1683753062.66921
