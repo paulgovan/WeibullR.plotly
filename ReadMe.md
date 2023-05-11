@@ -58,3 +58,8 @@ plotly_contour(obj, main='Weibull Contour Plot', col='red', signif=4, grid=FALSE
 ```
 
 ![](ReadMe_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+## More Examples
+
+For more examples with WeibullR.plotly, visit
+<https://rpubs.com/paulgovan/WeibullRplotlyExamples>

@@ -1,5 +1,5 @@
 ---
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -50,3 +50,7 @@ plotly_wblr(obj, main='Weibull Probability Plot', xlab='Years', ylab='Failure Pr
 ```{r message=FALSE, warning=FALSE}
 plotly_contour(obj, main='Weibull Contour Plot', col='red', signif=4, grid=FALSE)
 ```
+
+## More Examples
+
+For more examples with WeibullR.plotly, visit [https://rpubs.com/paulgovan/WeibullRplotlyExamples](https://rpubs.com/paulgovan/WeibullRplotlyExamples)

@@ -1,0 +1,213 @@
+---
+title: "WeibullR.plotly Examples"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine(knitr::rmarkdown)
+  %\VignetteIndexEntry(WeibullR.plotly Examples)
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+To view an interactive version of this vignette, visit [https://rpubs.com/paulgovan/WeibullRplotlyExamples](https://rpubs.com/paulgovan/WeibullRplotlyExamples)
+
+These examples are taken from the WeibullR Gallery that can be found  [here](https://github.com/openrelia/WeibullR.gallery)
+
+## Required packages
+
+```{r message=FALSE, warning=FALSE}
+library(WeibullR)
+library(WeibullR.plotly)
+```
+
+## Contour challenge
+
+```{r message=FALSE, warning=FALSE}
+daf<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/contour_challenge/daTEST.csv", header=FALSE)
+das<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/contour_challenge/dasuspendedTEST.csv", header=FALSE)
+
+fdf<-as.data.frame(table(daf[,1]))
+ft<-as.numeric(levels(fdf[,1]))
+fq<-fdf[,2]
+sdf<-as.data.frame(table(das[,1]))
+st<-as.numeric(levels(sdf[,1]))
+sq<-sdf[,2]
+fail_edata<-data.frame(time=ft, event=rep(1,length(ft)), qty=fq)
+sus_edata<-data.frame(time=st, event=rep(0, length(st)), qty=sq)
+teq_frame<-rbind(fail_edata, sus_edata)
+
+obj <- wblr.conf(wblr.fit(wblr(teq_frame), method.fit='mle'), method.conf='lrb')
+
+plotly_contour(obj, main='')
+```
+
+## Figure 3.13 from "The New Weibull Handbook"
+
+```{r message=FALSE, warning=FALSE}
+F3.13da<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/Figure3.13.csv", header=T)$F3.13da
+F3.13ln2 <- wblr.conf(wblr.fit(wblr(F3.13da,label="Figure3.13"),
+                     dist="lognormal",col="magenta"))
+
+plotly_wblr(F3.13ln2, col='magenta', main='Lognormal Plot')
+```
+
+## Multi-Distribution plot on Weibull canvas
+
+```{r message=FALSE, warning=FALSE}
+F3.13da<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/Figure3.13.csv", header=T)$F3.13da
+F3.13ln2 <- wblr.conf(wblr.fit(wblr(F3.13da,label="Figure3.13"),
+                     dist="lognormal",col="magenta"))
+F3.13w2<-wblr.conf(wblr.fit(wblr(F3.13da), col="blue"))
+F3.13w3<-wblr.conf(wblr.fit(wblr(F3.13da, dist="weibull3p"), col="red"))
+
+plotly_wblr(F3.13ln2, col='magenta')
+plotly_wblr(F3.13w2, col='blue')
+plotly_wblr(F3.13w3, col='red')
+```
+
+## Bathtub life data
+
+```{r message=FALSE, warning=FALSE}
+agc<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/acid_gas_compressor.csv", header=T)$agc
+dafit<-wblr(agc, label="acid gas compressor")
+dafit<-wblr.conf(wblr.fit(dafit,col="red"))
+
+plotly_wblr(dafit, col="red", main='Bathtub Life Data')
+```
+
+## Life Data Division as Competing Modes
+
+```{r message=FALSE, warning=FALSE}
+agc<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/acid_gas_compressor.csv", header=T)$agc
+earlyda<-agc[1:10]
+midda<-agc[11:131]
+endda<-agc[132:200]
+
+earlyfit<-wblr.conf(wblr.fit(wblr(fail=earlyda,
+                        susp=c(midda,endda),dist="weibull3p"),
+                   col="orange"))
+#
+midfit<-wblr.conf(wblr.fit(wblr(fail=midda,
+                      susp=c(earlyda,endda),dist="weibull3p"),
+                 col="magenta"))
+#
+endfit<-wblr.conf(wblr.fit(wblr(fail=endda,
+                      susp=c(earlyda,midda),dist="weibull3p"),
+                 col="blue")) 
+
+plotly_wblr(earlyfit, main="Division of Life Data Using 3p Weibull", col='orange')
+plotly_wblr(midfit, main="Division of Life Data Using 3p Weibull", col='magenta')
+plotly_wblr(endfit, main="Division of Life Data Using 3p Weibull", col='blue')
+```
+
+## Linearized 3p fits by t0 modification
+
+```{r message=FALSE, warning=FALSE}
+agc<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/acid_gas_compressor.csv", header=T)$agc
+earlyda<-agc[1:10]
+midda<-agc[11:131]
+endda<-agc[132:200]
+
+earlymodfit<-wblr.conf(wblr.fit(wblr(earlyda,c(midda,endda),col="orange", label="Early Life"), dist="weibull3p", modify.by.t0=T))
+midmodfit<-wblr.conf(wblr.fit(wblr(midda,endda,col="magenta", label="Mid Life"), dist="weibull3p", modify.by.t0=T))
+endmodfit<-wblr.conf(wblr.fit(wblr(endda, col="blue", label="End Life"), dist="weibull3p", modify.by.t0=T))
+
+plotly_wblr(earlymodfit, col='orange', main='Linearized 3p fits by t0 modification',
+            xlab='time-to')
+plotly_wblr(midmodfit, col='magenta', main='Linearized 3p fits by t0 modification', 
+            xlab='time-to')
+plotly_wblr(endmodfit, col='blue', main='Linearized 3p fits by t0 modification',
+            xlab='time-to')
+```
+
+## Example data from Wayne Nelson "Applied Life Data Analysis" (1982), page415
+
+```{r message=FALSE, warning=FALSE}
+# Abernethy refers to this as inspection option #5 (Interval Analysis)
+
+# Input Data
+# inspection time
+time<-c(6.12, 19.92, 29.64, 35.4, 39.72, 45.24,52.32, 63.48)	
+# quantity of newly identified cracked parts		
+qty<-c(5, 16, 12, 18, 18, 2, 6, 17)		
+x<-data.frame(time, qty)		
+# a single population of parts inspected over time
+# quantity in service (qis)		
+qis = 167		
+
+# must prepare a mixed input for intervals with no failure data		
+left<-c(0, x$time[-nrow(x)])	
+right<- x$time	
+suspensionDF<-data.frame(time=max(x$time), event=0, qty=qis-sum(x$qty))	
+
+obj<-wblr(x=suspensionDF, interval=data.frame(left, right, qty=x$qty),
+          interval.lty="dashed", interval.lwd=1, interval.col="blue"
+)	
+obj<-wblr.fit(obj, method.fit="mle", col="red")
+obj<-wblr.conf(obj, method.conf="fm", ci=.95, lty=2, lwd=1)
+obj<-wblr.conf(obj, method.conf="lrb", ci=.95, lty=2, lwd=1, col="green")
+
+suspensions <- as.vector(suspensionDF$time)
+plotly_wblr(obj, susp=suspensions, col='red', main='Parts Cracking Inspection Interval Analysis',
+          ylab='Cumulative % Cracked', xlab='Inspection Time', intcol='blue')
+```
+
+# Comparing the Simple Weibayes Function to a Challenging MLE Contour
+
+```{r message=FALSE, warning=FALSE}
+daf<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/contour_challenge/daTEST.csv", header=FALSE)
+das<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/contour_challenge/dasuspendedTEST.csv", header=FALSE)
+
+fdf<-as.data.frame(table(daf[,1]))
+ft<-as.numeric(levels(fdf[,1]))
+fq<-fdf[,2]
+sdf<-as.data.frame(table(das[,1]))
+st<-as.numeric(levels(sdf[,1]))
+sq<-sdf[,2]
+fail_edata<-data.frame(time=ft, event=rep(1,length(ft)), qty=fq)
+sus_edata<-data.frame(time=st, event=rep(0, length(st)), qty=sq)
+teq_frame<-rbind(fail_edata, sus_edata)
+
+# Simple Weibayes function	
+beta_range<-seq(2.5, 7, by=0.5)	
+wbpts<-NULL	
+for(b in beta_range)  {	
+  eta<-weibayes(teq_frame, beta=b)
+  this_pt<-c(eta, b)
+  wbpts<-rbind(wbpts, this_pt)
+}
+
+obj <- wblr.conf(wblr.fit(wblr(teq_frame), method.fit='mle'), method.conf='lrb')
+plotly_contour(obj, col='blue', main='')
+```
+
+## Contour to Bounds
+
+```{r message=FALSE, warning=FALSE}
+w2test<-c(40.57903, 51.5263, 54.01269, 90.70031, 110.56461,	
+          117.86191, 137.16324, 147.69461, 160.77858, 187.4198)	
+
+# Identify beta extremes for asymptote construction	
+contour_pts<-MLEcontour(mleframe(w2test), debias="rba")	
+max_beta<-which(contour_pts$Beta==max(contour_pts$Beta))	
+min_beta<-which(contour_pts$Beta==min(contour_pts$Beta))	
+
+fit_beta<-mlefit(mleframe(w2test), debias="rba")[2]	
+
+obj2<-wblr(w2test, label="w2test", col="grey")	
+obj2<-wblr.fit(obj2, method.fit="mle-rba",lty="blank")	
+obj2<-wblr.conf(obj2, method.conf="lrb", lty="solid",col="green3", lwd=2)	
+
+# Draw lines from select contour_pts that define the bounds most strongly	
+max_beta_pts<-matrix(c(1, p2y(pweibull(1,contour_pts$Beta[max_beta], contour_pts$Eta[max_beta])),	
+                       250, p2y(pweibull(250,contour_pts$Beta[max_beta], contour_pts$Eta[max_beta]))), 
+                     nrow=2,ncol=2, byrow=T)
+
+min_beta_pts<-matrix(c(1, p2y(pweibull(1,contour_pts$Beta[min_beta], contour_pts$Eta[min_beta])),	
+                       500, p2y(pweibull(500,contour_pts$Beta[min_beta], contour_pts$Eta[min_beta]))), 
+                     nrow=2,ncol=2, byrow=T)
+
+plotly_contour(obj2, col='green', main='')
+```

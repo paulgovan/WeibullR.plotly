@@ -39,6 +39,6 @@ Interactive Contour Plot.
 \dontrun{
 failures<-c(30, 49, 82, 90, 96)
 obj<-wblr.conf(wblr.fit(wblr(failures), method.fit = 'mle'), method.conf = 'lrb')
-plotly_wblr(obj)
+plotly_contour(obj)
 }
 }
