@@ -18,6 +18,8 @@
 #' }
 #' @import WeibullR
 #' @import plotly
+#' @importFrom graphics text
+#' @importFrom stats runif
 #' @export
 plotly_wblr <- function(wblr_obj,
                         susp=NULL,
@@ -161,7 +163,7 @@ plotly_wblr <- function(wblr_obj,
     ry <- NULL
   } else {
     susp_sd <- round(susp, signif)
-    ry=runif(length(susp))
+    ry=stats::runif(length(susp))
   }
 
   # Build the results table
