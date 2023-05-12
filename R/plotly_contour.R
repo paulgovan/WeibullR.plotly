@@ -40,7 +40,7 @@ plotly_contour <- function(wblr_obj,
   # Extract layout options
   if(is.null(gridcol)) gridcol<-'lightgray'
   col <- if(missing(col)) 'black' else col
-  fillcolor <- toRGB(col, 0.2)
+  fillcolor <- plotly::toRGB(col, 0.2)
   main <- if(missing(main)) 'Contour Plot' else main
   xlab <- if(missing(xlab)) 'Eta' else xlab
   ylab <- if(missing(ylab)) 'Beta' else ylab

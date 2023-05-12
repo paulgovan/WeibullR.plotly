@@ -44,7 +44,7 @@ plotly_wblr <- function(wblr_obj,
 
   # Extract layout options
   col <- if(missing(col)) 'black' else col
-  fillcolor <- toRGB(col, 0.2)
+  fillcolor <- plotly::toRGB(col, 0.2)
   main <- if(missing(main)) 'Probaility Plot' else main
   xlab <- if(missing(xlab)) 'Time to Failure' else xlab
   ylab <- if(missing(ylab)) 'Unreliability' else ylab
