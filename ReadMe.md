@@ -64,4 +64,4 @@ plotly_contour(obj, main='Weibull Contour Plot', col='red', signif=4, grid=FALSE
 For more examples with WeibullR.plotly, visit
 <https://rpubs.com/paulgovan/WeibullRplotlyExamples>
 
-For a basic introduction to Life Data Analysis with WeibullR, check out [Weibull Analysis with WeibullR]<https://rpubs.com/pgovan/1019136>
+For a basic introduction to Life Data Analysis with WeibullR, check out [Weibull Analysis with WeibullR](https://rpubs.com/pgovan/1019136)
