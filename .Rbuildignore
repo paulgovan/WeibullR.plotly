@@ -5,3 +5,10 @@
 ^ReadMe_files$
 ^ReadMe\.md$
 ^ReadMe\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
+^index\.md$
+^news\.md$
+^vignettes/OtherExamples\.html$

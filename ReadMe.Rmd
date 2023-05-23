@@ -10,8 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 WeibullR.plotly is a simple R package for building interactive Weibull Probability Plots. This package depends on WeibullR, a R package for Weibull analysis, and plotly, an interactive web-based graphing library.
 
-To view an interactive version of this ReadMe, visit [https://rpubs.com/paulgovan/WeibullRplotlyReadMe](https://rpubs.com/paulgovan/WeibullRplotlyReadMe)
-
 ## Getting Started 
 
 WeibullR.plotly is still in development. To install the developmental version in R:
@@ -51,6 +49,10 @@ plotly_wblr(obj, main='Weibull Probability Plot', xlab='Years', ylab='Failure Pr
 plotly_contour(obj, main='Weibull Contour Plot', col='red', signif=4, grid=FALSE)
 ```
 
-## More Examples
+## More Resources
 
-For more examples with WeibullR.plotly, visit [https://rpubs.com/paulgovan/WeibullRplotlyExamples](https://rpubs.com/paulgovan/WeibullRplotlyExamples)
+For an interactive introduction to Life Data Analysis, check out
+[WeibullR.learnr](https://paulgovan.github.io/WeibullR.learnr/)
+
+To try WeibullR.plotly in a Shiny app, check out [WeibullR.shiny](https://paulgovan.github.io/WeibullR.shiny/)
+
