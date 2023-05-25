@@ -2,6 +2,8 @@
 #'
 #' @param wblr_obj An object of class 'wblr'.
 #' @param susp An optional numeric vector of suspension data.
+#' @param suspplot Show the suspensions plot (TRUE) or not (FALSE).
+#' @param restab Show the results table (TRUE) or not (FALSE).
 #' @param main Main title.
 #' @param xlab X-axis label.
 #' @param ylab Y-axis label.
@@ -10,6 +12,7 @@
 #' @param grid Show grid (TRUE) or hide grid (FALSE).
 #' @param gridcol Color of the grid.
 #' @param intcol Color of the intervals for interval censored models.
+#' @return The function returns no value.
 #' @examples
 #' \dontrun{
 #' failures<-c(30, 49, 82, 90, 96)
@@ -23,6 +26,8 @@
 #' @export
 plotly_wblr <- function(wblr_obj,
                         susp=NULL,
+                        suspplot=NULL,
+                        restab=NULL,
                         main=NULL,
                         xlab=NULL,
                         ylab=NULL,
@@ -53,6 +58,15 @@ plotly_wblr <- function(wblr_obj,
   ygrid <- xgrid
   gridcol <- if(missing(gridcol)) 'lightgray' else gridcol
   intcol <- if(missing(intcol)) 'black' else intcol
+  if (missing(suspplot) & missing(restab)) {
+    subLayout <- 'all'
+  } else if (suspplot & !restab) {
+    subLayout <- 'susp_no_res'
+  } else if (!suspplot & restab) {
+    subLayout <- 'no_susp_res'
+  } else if (!suspplot & !restab) {
+    subLayout <- 'no_susp_no_res'
+  }
 
   ## Extract data from the wblr object
 
@@ -275,10 +289,22 @@ plotly_wblr <- function(wblr_obj,
   )
 
   # Build the combination plot
-  subplot(probPlot, suspPlot, resTab, nrows=2, titleX=TRUE, titleY=TRUE) %>%
-    layout(xaxis=list(domain=c(0, 0.75)), xaxis2=list(domain=c(0, 0.75)),
-           xaxis3=list(domain=c(0.775, 1)), yaxis=list(domain=c(0, 0.875)),
-           yaxis2=list(domain=c(0.9, 1)), yaxis3=list(domain=c(0, 0.85))
-    )
+  if(subLayout=='all') {
+    subplot(probPlot, suspPlot, resTab, nrows=2, titleX=TRUE, titleY=TRUE) %>%
+      layout(xaxis=list(domain=c(0, 0.75)), xaxis2=list(domain=c(0, 0.75)),
+             xaxis3=list(domain=c(0.775, 1)), yaxis=list(domain=c(0, 0.875)),
+             yaxis2=list(domain=c(0.9, 1)), yaxis3=list(domain=c(0, 0.85))
+      )
+  } else if(subLayout=='susp_no_res') {
+    subplot(probPlot, suspPlot, nrows=2, titleX=TRUE, titleY=TRUE) %>%
+      layout(xaxis=list(domain=c(0, 1)), xaxis2=list(domain=c(0, 1)),
+             yaxis=list(domain=c(0, 0.875)), yaxis2=list(domain=c(0.9, 1))
+      )
+  } else if(subLayout=='no_susp_res') {
+    subplot(probPlot, resTab, titleX=TRUE, titleY=TRUE) %>%
+      layout(xaxis=list(domain=c(0, 0.75)), xaxis2=list(domain=c(0.775, 1)),
+             yaxis=list(domain=c(0, 1)), yaxis3=list(domain=c(0, 1))
+      )
+  } else probPlot
 
 }

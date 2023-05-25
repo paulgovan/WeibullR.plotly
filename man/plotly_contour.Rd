@@ -32,6 +32,9 @@ plotly_contour(
 
 \item{gridcol}{Color of the grid.}
 }
+\value{
+The function returns no value.
+}
 \description{
 Interactive Contour Plot.
 }

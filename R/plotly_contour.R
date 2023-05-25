@@ -8,6 +8,7 @@
 #' @param signif Significant digits of results
 #' @param grid Show grid (TRUE) or hide grid (FALSE).
 #' @param gridcol Color of the grid.
+#' @return The function returns no value.
 #' @examples
 #' \dontrun{
 #' failures<-c(30, 49, 82, 90, 96)

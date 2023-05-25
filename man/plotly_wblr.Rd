@@ -7,6 +7,8 @@
 plotly_wblr(
   wblr_obj,
   susp = NULL,
+  suspplot = NULL,
+  restab = NULL,
   main = NULL,
   xlab = NULL,
   ylab = NULL,
@@ -21,6 +23,10 @@ plotly_wblr(
 \item{wblr_obj}{An object of class 'wblr'.}
 
 \item{susp}{An optional numeric vector of suspension data.}
+
+\item{suspplot}{Show the suspensions plot (TRUE) or not (FALSE).}
+
+\item{restab}{Show the results table (TRUE) or not (FALSE).}
 
 \item{main}{Main title.}
 
@@ -37,6 +43,9 @@ plotly_wblr(
 \item{gridcol}{Color of the grid.}
 
 \item{intcol}{Color of the intervals for interval censored models.}
+}
+\value{
+The function returns no value.
 }
 \description{
 Interactive Probability Plot.
