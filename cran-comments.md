@@ -5,17 +5,11 @@
 ## R CMD check results
 There were no ERRORs or WARNINGs.
 
-There was 1 NOTE
+There was 1 NOTE.
 
-New submission
-
-Possibly misspelled words in DESCRIPTION:
-  Plotly
-  WeibullR
-  plotly
-Maintainer: 'Paul Govan <pgovan1@aggienetwork.com>'
-
-These are R package names.
+Maintainer: ‘Paul Govan <pgovan1@aggienetwork.com>’
+  
+  New submission
 
 ## Downstream dependencies
 There are currently no downstream dependencies for this package.

@@ -12,5 +12,6 @@
 ^index\.md$
 ^news\.md$
 ^vignettes/OtherExamples\.html$
-^cran_comments$
 ^vignettes$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
