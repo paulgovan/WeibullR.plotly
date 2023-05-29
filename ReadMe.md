@@ -1,8 +1,8 @@
 
 ## WeibullR.plotly
 
-WeibullR.plotly is a simple R package for building interactive Weibull
-Probability Plots. This package depends on WeibullR, a R package for
+A simple R package for building interactive Weibull
+Probability Plots that depends on WeibullR, a R package for
 Weibull analysis, and plotly, an interactive web-based graphing library.
 
 ## Getting Started
