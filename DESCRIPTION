@@ -1,12 +1,12 @@
 Package: WeibullR.plotly
 Type: Package
-Title: Interactive Weibull Probability Plots with "WeibullR" and "Plotly"
+Title: Interactive Weibull Probability Plots with 'WeibullR'
 Version: 0.1.1
 Authors@R: person("Paul", "Govan", email = "pgovan1@aggienetwork.com", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-1821-8492"))
-Description: A simple R package for building interactive Weibull Probability 
-  Plots that depends on "WeibullR" by David Silkworth and Jurgen Symynck (2022) 
-  <https://CRAN.R-project.org/package=WeibullR>, a R package for 
-  Weibull analysis, and "Plotly" by Carson Sievert (2020) <https://plotly-r.com>, 
+Description: Build interactive Weibull Probability 
+  Plots with 'WeibullR' by David Silkworth and Jurgen Symynck (2022) 
+  <https://CRAN.R-project.org/package=WeibullR>, an R package for 
+  Weibull analysis, and 'plotly' by Carson Sievert (2020) <https://plotly-r.com>, 
   an interactive web-based graphing library.
 URL: https://paulgovan.github.io/WeibullR.plotly/
 BugReports: https://github.com/paulgovan/weibullr.plotly/issues
