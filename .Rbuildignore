@@ -10,7 +10,7 @@
 ^pkgdown$
 ^\.github$
 ^index\.md$
-^news\.md$
+^NEWS\.md$
 ^vignettes/OtherExamples\.html$
 ^vignettes$
 ^CRAN-SUBMISSION$
