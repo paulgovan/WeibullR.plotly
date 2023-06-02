@@ -60,6 +60,8 @@ plotly_wblr <- function(wblr_obj,
   intcol <- if(missing(intcol)) 'black' else intcol
   if (missing(suspplot) & missing(restab)) {
     subLayout <- 'all'
+  } else if (suspplot & restab) {
+    subLayout <- 'all'
   } else if (suspplot & !restab) {
     subLayout <- 'susp_no_res'
   } else if (!suspplot & restab) {
@@ -233,14 +235,14 @@ plotly_wblr <- function(wblr_obj,
     ) %>%
 
     # Add best fit
-    add_trace(x=datum, y=unrel_trans, mode='lines',
+    add_trace(x=datum, y=unrel_trans, mode='markers+lines',
               marker=list(color='transparent'), line = list(color = col),
               error_x=list(array=NULL),
               text=~paste0("Fit: ",datum_sd,", ",unrel_sd,")"), hoverinfo = 'text'
     ) %>%
 
     # Add lower confidence bound
-    add_trace(x=lower, y=unrel_trans, mode='lines',
+    add_trace(x=lower, y=unrel_trans, mode='markers+lines',
               marker=list(color='transparent'), line=list(color='transparent'),
               error_x=list(array=NULL),
               text=~paste0("Upper: ",lower_sd,", ",unrel_sd,")"), hoverinfo = 'text'
@@ -248,7 +250,7 @@ plotly_wblr <- function(wblr_obj,
     ) %>%
 
     # Add upper confidence bound
-    add_trace(x=upper, y=unrel_trans, mode='lines',
+    add_trace(x=upper, y=unrel_trans, mode='markers+lines',
               fill='tonexty',
               fillcolor=fillcolor,
               marker=list(color='transparent'), line=list(color='transparent'),
@@ -264,10 +266,10 @@ plotly_wblr <- function(wblr_obj,
 
     # Create the suspension plot layout
     layout(
-      xaxis = list(type='log', title=NULL, zeroline=FALSE, showline=TRUE, mirror='ticks',
+      xaxis = list(type='log', title='', zeroline=FALSE, showline=TRUE, mirror='ticks',
                    showticklabels=FALSE, showgrid=FALSE, range=list(xmin, xmax)
       ),
-      yaxis = list(title=NULL, zeroline=FALSE, showline=TRUE, mirror='ticks',
+      yaxis = list(title='', zeroline=FALSE, showline=TRUE, mirror='ticks',
                    showticklabels=FALSE, showgrid=FALSE
       )
     )
@@ -290,21 +292,24 @@ plotly_wblr <- function(wblr_obj,
 
   # Build the combination plot
   if(subLayout=='all') {
-    subplot(probPlot, suspPlot, resTab, nrows=2, titleX=TRUE, titleY=TRUE) %>%
+    comboPlot <- subplot(probPlot, suspPlot, resTab, nrows=2, titleX=TRUE, titleY=TRUE) %>%
       layout(xaxis=list(domain=c(0, 0.75)), xaxis2=list(domain=c(0, 0.75)),
              xaxis3=list(domain=c(0.775, 1)), yaxis=list(domain=c(0, 0.875)),
              yaxis2=list(domain=c(0.9, 1)), yaxis3=list(domain=c(0, 0.85))
       )
   } else if(subLayout=='susp_no_res') {
-    subplot(probPlot, suspPlot, nrows=2, titleX=TRUE, titleY=TRUE) %>%
+    comboPlot <- subplot(probPlot, suspPlot, nrows=2, titleX=TRUE, titleY=TRUE) %>%
       layout(xaxis=list(domain=c(0, 1)), xaxis2=list(domain=c(0, 1)),
              yaxis=list(domain=c(0, 0.875)), yaxis2=list(domain=c(0.9, 1))
       )
   } else if(subLayout=='no_susp_res') {
-    subplot(probPlot, resTab, titleX=TRUE, titleY=TRUE) %>%
+    comboPlot <- subplot(probPlot, resTab, titleX=TRUE, titleY=TRUE) %>%
       layout(xaxis=list(domain=c(0, 0.75)), xaxis2=list(domain=c(0.775, 1)),
              yaxis=list(domain=c(0, 1)), yaxis3=list(domain=c(0, 1))
       )
-  } else probPlot
+  } else {
+    comboPlot <- probPlot
+  }
 
+  comboPlot
 }

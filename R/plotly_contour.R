@@ -83,7 +83,7 @@ plotly_contour <- function(wblr_obj,
   yvals <- round(wblr_obj$fit[[1]]$conf[[1]]$contour[[2]], signif)
 
   # Build the contour plot
-  contPlot <- plot_ly(x=xvals, y=yvals, type='scatter', mode='lines',
+  contPlot <- plot_ly(x=xvals, y=yvals, type='scatter', mode='markers+lines',
                       showlegend=FALSE, fill='tonexty', fillcolor=fillcolor,
                       marker=list(color='transparent'), line=list(color='transparent'),
                       text=~paste0("Contour: (",xvals,", ",yvals,")"), hoverinfo = 'text'
@@ -98,7 +98,7 @@ plotly_contour <- function(wblr_obj,
     ) %>%
 
     # Add parameter estimates
-    add_trace(x=paramval2, y=paramval1, mode='markers',
+    add_trace(x=paramval2, y=paramval1, mode='markers+lines',
               marker=list(color='black', size=20),
               text=~paste0("Estimates: (",paramval2,", ",paramval1,")"), hoverinfo = 'text')
 
