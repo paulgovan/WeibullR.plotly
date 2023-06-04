@@ -8,8 +8,7 @@ status](https://www.r-pkg.org/badges/version/WeibullR.plotly)](https://CRAN.R-pr
 ![](http://cranlogs.r-pkg.org/badges/grand-total/WeibullR.plotly)
 ![](http://cranlogs.r-pkg.org/badges/WeibullR.plotly) [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Launch
-binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/paulgovan/WeibullR.plotly/main)
+[![DOI](https://zenodo.org/badge/639144870.svg)](https://zenodo.org/badge/latestdoi/639144870)
 <!-- badges: end -->
 
 Build interactive Weibull Probability Plots with WeibullR, an R package

@@ -8,8 +8,7 @@ status](https://www.r-pkg.org/badges/version/WeibullR.plotly)](https://CRAN.R-pr
 ![](http://cranlogs.r-pkg.org/badges/grand-total/WeibullR.plotly)
 ![](http://cranlogs.r-pkg.org/badges/WeibullR.plotly) [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![Launch
-binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/paulgovan/WeibullR.plotly/main)
+[![DOI](https://zenodo.org/badge/639144870.svg)](https://zenodo.org/badge/latestdoi/639144870)
 <!-- badges: end -->
 
 Build interactive Weibull Probability Plots with WeibullR, an R package
@@ -43,7 +42,7 @@ obj<-wblr.conf(wblr.fit(wblr(failures)))
 plotly_wblr(obj)
 ```
 
-![](man/figures/unnamed-chunk-2-1.png)<!-- -->
+![](ReadMe_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 To build a contour plot, use the `plotly_contour` function. Note that
 contour plots are only available where `method.fit='mle'` and
@@ -54,7 +53,7 @@ obj<-wblr.conf(wblr.fit(wblr(failures), method.fit = 'mle'), method.conf = 'lrb'
 plotly_contour(obj)
 ```
 
-![](man/figures/unnamed-chunk-3-1.png)<!-- -->
+![](ReadMe_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 # Customization
 
@@ -64,13 +63,13 @@ WeibullR.plotly has several customization options.
 plotly_wblr(obj, main='Weibull Probability Plot', xlab='Years', ylab='Failure Probability', col='blue', signif=4, grid=FALSE)
 ```
 
-![](man/figures/unnamed-chunk-4-1.png)<!-- -->
+![](ReadMe_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 plotly_contour(obj, main='Weibull Contour Plot', col='red', signif=4, grid=FALSE)
 ```
 
-![](man/figures/unnamed-chunk-5-1.png)<!-- -->
+![](ReadMe_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 # More Resources
 
