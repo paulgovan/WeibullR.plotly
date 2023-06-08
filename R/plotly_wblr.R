@@ -276,7 +276,7 @@ plotly_wblr <- function(wblr_obj,
 
   # Create the results table
   resTab <- plot_ly(type='table',
-                    domain = list(x = c(0.8, 1), y = c(0, 0.85)),
+                    domain = list(x = c(0.775, 1)),
                     # columnwidth=c(50, 50),
                     header=list(values=names(res), align=c('center','center'),
                                 line=list(width=1, color='black'),
@@ -290,22 +290,36 @@ plotly_wblr <- function(wblr_obj,
                     )
   )
 
+  # Workaround for open issue with plotly causing warning
+  function_to_hide_plotly_warning <- function(...) {
+    plot <- subplot(...)
+    plot$x$layout <- plot$x$layout[grep('NA', names(plot$x$layout), invert = TRUE)]
+    plot
+  }
+
   # Build the combination plot
   if(subLayout=='all') {
-    comboPlot <- subplot(probPlot, suspPlot, resTab, nrows=2, titleX=TRUE, titleY=TRUE) %>%
-      layout(xaxis=list(domain=c(0, 0.75)), xaxis2=list(domain=c(0, 0.75)),
-             xaxis3=list(domain=c(0.775, 1)), yaxis=list(domain=c(0, 0.875)),
-             yaxis2=list(domain=c(0.9, 1)), yaxis3=list(domain=c(0, 0.85))
+    comboPlot <- function_to_hide_plotly_warning(probPlot, suspPlot, resTab, nrows=2, titleX=TRUE, titleY=TRUE) %>%
+      layout(xaxis=list(domain=c(0, 0.75)),
+             xaxis2=list(domain=c(0, 0.75)),
+             xaxis3=list(domain=c(0.775, 1)),
+             yaxis=list(domain=c(0, 0.875)),
+             yaxis2=list(domain=c(0.9, 1)),
+             yaxis3=list(domain=c(0, 0.85))
       )
   } else if(subLayout=='susp_no_res') {
-    comboPlot <- subplot(probPlot, suspPlot, nrows=2, titleX=TRUE, titleY=TRUE) %>%
-      layout(xaxis=list(domain=c(0, 1)), xaxis2=list(domain=c(0, 1)),
-             yaxis=list(domain=c(0, 0.875)), yaxis2=list(domain=c(0.9, 1))
+    comboPlot <- function_to_hide_plotly_warning(probPlot, suspPlot, nrows=2, titleX=TRUE, titleY=TRUE) %>%
+      layout(xaxis=list(domain=c(0, 1)),
+             xaxis2=list(domain=c(0, 1)),
+             yaxis=list(domain=c(0, 0.875)),
+             yaxis2=list(domain=c(0.9, 1))
       )
   } else if(subLayout=='no_susp_res') {
-    comboPlot <- subplot(probPlot, resTab, titleX=TRUE, titleY=TRUE) %>%
-      layout(xaxis=list(domain=c(0, 0.75)), xaxis2=list(domain=c(0.775, 1)),
-             yaxis=list(domain=c(0, 1)), yaxis3=list(domain=c(0, 1))
+    comboPlot <- function_to_hide_plotly_warning(probPlot, resTab, titleX=TRUE, titleY=TRUE) %>%
+      layout(xaxis=list(domain=c(0, 0.75)),
+             xaxis2=list(domain=c(0.775, 1)),
+             yaxis=list(domain=c(0, 1)),
+             yaxis2=list(domain=c(0, 1))
       )
   } else {
     comboPlot <- probPlot
