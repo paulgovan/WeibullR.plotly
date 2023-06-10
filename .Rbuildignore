@@ -11,8 +11,8 @@
 ^\.github$
 ^index\.md$
 ^NEWS\.md$
-^vignettes/OtherExamples\.html$
 ^vignettes$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
 ^LICENSE$
+^revdep$
