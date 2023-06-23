@@ -2,16 +2,19 @@
 #'
 #' @param wblr_obj An object of class 'wblr'.
 #' @param susp An optional numeric vector of suspension data.
-#' @param suspplot Show the suspensions plot (TRUE) or not (FALSE).
-#' @param restab Show the results table (TRUE) or not (FALSE).
+#' @param showConf Show the confidence bounds (TRUE) or not (FALSE).
+#' @param showSusp Show the suspensions plot (TRUE) or not (FALSE).
+#' @param showRes Show the results table (TRUE) or not (FALSE).
+#' @param showGrid Show grid (TRUE) or hide grid (FALSE).
 #' @param main Main title.
 #' @param xlab X-axis label.
 #' @param ylab Y-axis label.
-#' @param col Color of the model fit and confidence bounds
+#' @param probCol Color of the probability values.
+#' @param fitCol Color of the model fit.
+#' @param confCol Color of the confidence bounds.
+#' @param intCol Color of the intervals for interval censored models.
+#' @param gridCol Color of the grid.
 #' @param signif Significant digits of results
-#' @param grid Show grid (TRUE) or hide grid (FALSE).
-#' @param gridcol Color of the grid.
-#' @param intcol Color of the intervals for interval censored models.
 #' @return The function returns no value.
 #' @examples
 #' library(WeibullR)
@@ -26,16 +29,19 @@
 #' @export
 plotly_wblr <- function(wblr_obj,
                         susp=NULL,
-                        suspplot=NULL,
-                        restab=NULL,
+                        showConf=NULL,
+                        showSusp=NULL,
+                        showRes=NULL,
+                        showGrid=NULL,
                         main=NULL,
                         xlab=NULL,
                         ylab=NULL,
-                        col=NULL,
-                        signif=NULL,
-                        grid=NULL,
-                        gridcol=NULL,
-                        intcol=NULL) {
+                        probCol=NULL,
+                        fitCol=NULL,
+                        confCol=NULL,
+                        intCol=NULL,
+                        gridCol=NULL,
+                        signif=NULL) {
 
   # Check for a wblr object
   if(!identical(class(wblr_obj),"wblr")){
@@ -48,25 +54,30 @@ plotly_wblr <- function(wblr_obj,
   }
 
   # Extract layout options
-  col <- if(missing(col)) 'black' else col
-  fillcolor <- plotly::toRGB(col, 0.2)
+  probCol <- if(missing(probCol)) 'black' else probCol
+  fitCol <- if(missing(fitCol)) 'black' else fitCol
+  confCol <- if(missing(confCol)) 'black' else confCol
+  fillcolor <- plotly::toRGB(confCol, 0.2)
+  intCol <- if(missing(intCol)) 'black' else intCol
+  gridCol <- if(missing(gridCol)) 'lightgray' else gridCol
   main <- if(missing(main)) 'Probability Plot' else main
   xlab <- if(missing(xlab)) 'Time to Failure' else xlab
   ylab <- if(missing(ylab)) 'Unreliability' else ylab
   signif <- if(missing(signif)) 3 else signif
-  xgrid <- ifelse(is.null(grid) || isTRUE(grid), TRUE, FALSE)
+  xgrid <- ifelse(is.null(showGrid) || isTRUE(showGrid), TRUE, FALSE)
   ygrid <- xgrid
-  gridcol <- if(missing(gridcol)) 'lightgray' else gridcol
-  intcol <- if(missing(intcol)) 'black' else intcol
-  if (missing(suspplot) & missing(restab)) {
+
+
+  showConf <- if(missing(showConf)) TRUE else FALSE
+  if (missing(showSusp) & missing(showRes)) {
     subLayout <- 'all'
-  } else if (suspplot & restab) {
+  } else if (showSusp & showRes) {
     subLayout <- 'all'
-  } else if (suspplot & !restab) {
+  } else if (showSusp & !showRes) {
     subLayout <- 'susp_no_res'
-  } else if (!suspplot & restab) {
+  } else if (!showSusp & showRes) {
     subLayout <- 'no_susp_res'
-  } else if (!suspplot & !restab) {
+  } else if (!showSusp & !showRes) {
     subLayout <- 'no_susp_no_res'
   }
 
@@ -104,6 +115,17 @@ plotly_wblr <- function(wblr_obj,
     upper <- NULL
   }
 
+  else if(showConf==FALSE) {
+    datum <- wblr_obj$fit[[1]]$conf[[1]]$bounds$Datum
+    unrel <- wblr_obj$fit[[1]]$conf[[1]]$bounds$unrel
+    lower <- NULL
+    upper <- NULL
+    datum_sd <- round(datum, signif)
+    unrel_sd <- round(unrel, signif)
+    lower_sd <- NULL
+    upper_sd <- NULL
+  }
+
   # Get the fit and upper/lower confidence bounds
   else {
     datum <- wblr_obj$fit[[1]]$conf[[1]]$bounds$Datum
@@ -116,7 +138,7 @@ plotly_wblr <- function(wblr_obj,
     upper_sd <- round(upper, signif)
   }
 
-  # Check the distribution transform probability/unreliability
+  # Check the distribution and transform probability/unreliability
   if(is.null(wblr_obj$fit)) {
     param1 <- NULL
     param2 <- NULL
@@ -221,22 +243,22 @@ plotly_wblr <- function(wblr_obj,
 
   # Create the main probability plot
   probPlot <- plot_ly(x=time, y=prob_trans, type='scatter', mode='markers',
-                      marker=list(color='black'), showlegend=FALSE, error_x=list(array=~ints, color=intcol),
+                      marker=list(color=probCol), showlegend=FALSE, error_x=list(array=~ints, color=intCol),
                       name="", text=~paste0("Probability: (",time_sd,", ",prob_sd,")"), hoverinfo = 'text'
   ) %>%
 
     # Specify the main probability plot layout
     layout(title=main,
            xaxis = list(type='log', title=xlab, showline=TRUE, mirror='ticks',
-                        showgrid=xgrid, gridcolor=gridcol, range=list(xmin, xmax)),
+                        showgrid=xgrid, gridcolor=gridCol, range=list(xmin, xmax)),
            yaxis = list(type='log', title=ylab, showline=TRUE, mirror = 'ticks',
-                        size=text, showgrid=ygrid, gridcolor=gridcol, range=list(ymin, ymax),
+                        size=text, showgrid=ygrid, gridcolor=gridCol, range=list(ymin, ymax),
                         tickvals=yticks_trans, ticktext=yticks)
     ) %>%
 
     # Add best fit
     add_trace(x=datum, y=unrel_trans, mode='markers+lines',
-              marker=list(color='transparent'), line = list(color = col),
+              marker=list(color='transparent'), line = list(color = fitCol),
               error_x=list(array=NULL),
               text=~paste0("Fit: ",datum_sd,", ",unrel_sd,")"), hoverinfo = 'text'
     ) %>%
@@ -260,7 +282,7 @@ plotly_wblr <- function(wblr_obj,
 
   # Create the suspension plot
   suspPlot <- plot_ly(x=susp, y=ry, type='scatter', mode='markers',
-                      marker=list(color='black'), showlegend=FALSE,
+                      marker=list(color=probCol), showlegend=FALSE,
                       text=~paste0("Suspension: ",susp_sd), hoverinfo='text'
   ) %>%
 

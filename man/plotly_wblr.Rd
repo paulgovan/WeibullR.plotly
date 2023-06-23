@@ -7,16 +7,19 @@
 plotly_wblr(
   wblr_obj,
   susp = NULL,
-  suspplot = NULL,
-  restab = NULL,
+  showConf = NULL,
+  showSusp = NULL,
+  showRes = NULL,
+  showGrid = NULL,
   main = NULL,
   xlab = NULL,
   ylab = NULL,
-  col = NULL,
-  signif = NULL,
-  grid = NULL,
-  gridcol = NULL,
-  intcol = NULL
+  probCol = NULL,
+  fitCol = NULL,
+  confCol = NULL,
+  intCol = NULL,
+  gridCol = NULL,
+  signif = NULL
 )
 }
 \arguments{
@@ -24,9 +27,13 @@ plotly_wblr(
 
 \item{susp}{An optional numeric vector of suspension data.}
 
-\item{suspplot}{Show the suspensions plot (TRUE) or not (FALSE).}
+\item{showConf}{Show the confidence bounds (TRUE) or not (FALSE).}
 
-\item{restab}{Show the results table (TRUE) or not (FALSE).}
+\item{showSusp}{Show the suspensions plot (TRUE) or not (FALSE).}
+
+\item{showRes}{Show the results table (TRUE) or not (FALSE).}
+
+\item{showGrid}{Show grid (TRUE) or hide grid (FALSE).}
 
 \item{main}{Main title.}
 
@@ -34,15 +41,17 @@ plotly_wblr(
 
 \item{ylab}{Y-axis label.}
 
-\item{col}{Color of the model fit and confidence bounds}
+\item{probCol}{Color of the probability values.}
+
+\item{fitCol}{Color of the model fit.}
+
+\item{confCol}{Color of the confidence bounds.}
+
+\item{intCol}{Color of the intervals for interval censored models.}
+
+\item{gridCol}{Color of the grid.}
 
 \item{signif}{Significant digits of results}
-
-\item{grid}{Show grid (TRUE) or hide grid (FALSE).}
-
-\item{gridcol}{Color of the grid.}
-
-\item{intcol}{Color of the intervals for interval censored models.}
 }
 \value{
 The function returns no value.

@@ -4,10 +4,10 @@
 #' @param main Main title.
 #' @param xlab X-axis label.
 #' @param ylab Y-axis label.
-#' @param col Color of the model fit and confidence bounds
+#' @param showGrid Show grid (TRUE) or hide grid (FALSE).
+#' @param col Color of the model contour
+#' @param gridCol Color of the grid.
 #' @param signif Significant digits of results
-#' @param grid Show grid (TRUE) or hide grid (FALSE).
-#' @param gridcol Color of the grid.
 #' @return The function returns no value.
 #' @examples
 #' library(WeibullR)
@@ -22,10 +22,10 @@ plotly_contour <- function(wblr_obj,
                            main=NULL,
                            xlab=NULL,
                            ylab=NULL,
+                           showGrid=NULL,
                            col=NULL,
-                           signif=NULL,
-                           grid=NULL,
-                           gridcol=NULL)
+                           gridCol=NULL,
+                           signif=NULL)
   {
 
   # Check for a wblr object
@@ -39,16 +39,16 @@ plotly_contour <- function(wblr_obj,
   }
 
   # Extract layout options
-  if(is.null(gridcol)) gridcol<-'lightgray'
   col <- if(missing(col)) 'black' else col
   fillcolor <- plotly::toRGB(col, 0.2)
+  gridCol <- if(missing(gridCol)) 'lightgray' else gridCol
   main <- if(missing(main)) 'Contour Plot' else main
   xlab <- if(missing(xlab)) 'Eta' else xlab
   ylab <- if(missing(ylab)) 'Beta' else ylab
   signif <- if(missing(signif)) 3 else signif
-  xgrid <- ifelse(is.null(grid) || isTRUE(grid), TRUE, FALSE)
+  xgrid <- ifelse(is.null(showGrid) || isTRUE(showGrid), TRUE, FALSE)
   ygrid <- xgrid
-  gridcol <- if(missing(gridcol)) 'lightgray' else gridcol
+
 
   ## Extract data from the wblr object
 
@@ -92,9 +92,9 @@ plotly_contour <- function(wblr_obj,
     # Specify the layout for the contour plot
     layout(title=main,
            xaxis = list(title=xlab, showline=TRUE, mirror='ticks',
-                        showgrid=xgrid, gridcolor=gridcol),
+                        showgrid=xgrid, gridcolor=gridCol),
            yaxis = list(title=ylab, showline=TRUE, mirror = 'ticks',
-                        showgrid=ygrid, gridcolor=gridcol)
+                        showgrid=ygrid, gridcolor=gridCol)
     ) %>%
 
     # Add parameter estimates

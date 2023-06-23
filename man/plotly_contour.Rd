@@ -9,10 +9,10 @@ plotly_contour(
   main = NULL,
   xlab = NULL,
   ylab = NULL,
+  showGrid = NULL,
   col = NULL,
-  signif = NULL,
-  grid = NULL,
-  gridcol = NULL
+  gridCol = NULL,
+  signif = NULL
 )
 }
 \arguments{
@@ -24,13 +24,13 @@ plotly_contour(
 
 \item{ylab}{Y-axis label.}
 
-\item{col}{Color of the model fit and confidence bounds}
+\item{showGrid}{Show grid (TRUE) or hide grid (FALSE).}
+
+\item{col}{Color of the model contour}
+
+\item{gridCol}{Color of the grid.}
 
 \item{signif}{Significant digits of results}
-
-\item{grid}{Show grid (TRUE) or hide grid (FALSE).}
-
-\item{gridcol}{Color of the grid.}
 }
 \value{
 The function returns no value.
