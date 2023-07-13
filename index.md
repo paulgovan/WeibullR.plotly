@@ -71,6 +71,10 @@ plotly_contour(obj, main='Weibull Contour Plot', col='red', signif=4, grid=FALSE
 
 ![](man/figures/unnamed-chunk-5-1.png)<!-- -->
 
+## Code of Conduct
+
+Please note that the WeibullR.plotly project is released with a [Contributor Code of Conduct](https://paulgovan.github.io/WeibullR.plotly/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+
 # More Resources
 
 For an interactive introduction to Life Data Analysis, check out

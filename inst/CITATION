@@ -1,0 +1,13 @@
+citHeader("To cite WeibullR.plotly in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "WeibullR.plotly: Interactive Weibull Probability Plots with 'WeibullR'",
+  author   = "Paul Govan",
+  year     = "2023",
+  note     = "R package version 0.1.5",
+  url      = "https://CRAN.R-project.org/package=WeibullR.plotly",
+  textVersion = paste(
+
+  )
+)
