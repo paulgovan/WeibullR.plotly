@@ -156,8 +156,8 @@ plotly_wblr <- function(wblr_obj,
     paramval1 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[1]), signif)
     paramval2 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[2]), signif)
     paramval3 <- NULL
-    prob_trans <- log(1/(1-probability))
-    unrel_trans <- log(1/(1-unrel))
+    prob_trans <- qnorm(probability)
+    unrel_trans <- qnorm(unrel)
   }
   else if(wblr_obj$fit[[1]]$options$dist=='weibull'){
     param1 <- 'Beta'
@@ -235,7 +235,15 @@ plotly_wblr <- function(wblr_obj,
 
   # Setup the main probability plot
   yticks <- c(0.000001,0.00001,0.0001,0.001,0.01,0.05,0.1,0.2,0.5,1,2,5,10,20,50,90,99,99.999)
-  yticks_trans<- log(1/(1-yticks/100))
+
+  if(wblr_obj$fit[[1]]$options$dist=='lognormal') {
+    yticks_trans <- qnorm(yticks/100)
+    yaxis_scale <- 'linear'
+  } else {
+    yticks_trans<- log(1/(1-yticks/100))
+    yaxis_scale <- 'log'
+  }
+
   ymin <- min(log10(unrel))
   ymax <- max(log10(yticks_trans))
   xmin <- min(log10(datum))
@@ -251,7 +259,7 @@ plotly_wblr <- function(wblr_obj,
     layout(title=main,
            xaxis = list(type='log', title=xlab, showline=TRUE, mirror='ticks',
                         showgrid=xgrid, gridcolor=gridCol, range=list(xmin, xmax)),
-           yaxis = list(type='log', title=ylab, showline=TRUE, mirror = 'ticks',
+           yaxis = list(type=yaxis_scale, title=ylab, showline=TRUE, mirror = 'ticks',
                         size=text, showgrid=ygrid, gridcolor=gridCol, range=list(ymin, ymax),
                         tickvals=yticks_trans, ticktext=yticks)
     ) %>%

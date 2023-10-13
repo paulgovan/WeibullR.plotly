@@ -5,7 +5,7 @@ citEntry(
   title    = "WeibullR.plotly: Interactive Weibull Probability Plots with 'WeibullR'",
   author   = "Paul Govan",
   year     = "2023",
-  note     = "R package version 0.1.5",
+  note     = "R package version 0.1.6",
   url      = "https://CRAN.R-project.org/package=WeibullR.plotly",
   doi      = "10.5281/zenodo.8003550",
   textVersion = paste(
