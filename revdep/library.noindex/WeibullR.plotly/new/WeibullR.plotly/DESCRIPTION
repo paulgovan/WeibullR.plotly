@@ -1,7 +1,7 @@
 Package: WeibullR.plotly
 Type: Package
 Title: Interactive Weibull Probability Plots with 'WeibullR'
-Version: 0.1.4
+Version: 0.2.0
 Authors@R: person("Paul", "Govan", email = "pgovan1@aggienetwork.com", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-1821-8492"))
 Description: Build interactive Weibull Probability 
   Plots with 'WeibullR' by David Silkworth and Jurgen Symynck (2022) 
@@ -18,7 +18,7 @@ RoxygenNote: 7.2.3
 RemoteType: local
 RemoteUrl: /Users/paulgovan/Documents/WeibullR.plotly
 NeedsCompilation: no
-Packaged: 2023-06-09 02:34:37 UTC; paulgovan
+Packaged: 2023-10-14 15:01:19 UTC; paulgovan
 Author: Paul Govan [aut, cre, cph] (<https://orcid.org/0000-0002-1821-8492>)
 Maintainer: Paul Govan <pgovan1@aggienetwork.com>
-Built: R 4.2.3; ; 2023-06-09 02:34:48 UTC; unix
+Built: R 4.2.3; ; 2023-10-14 15:01:19 UTC; unix
