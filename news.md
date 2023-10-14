@@ -1,3 +1,9 @@
+# WeibullR.plotly 0.2
+
+## Minor improvements and fixes
+* `plotly_wblr` now has a lognormal plotting canvas.
+* Both `plotly_wblr` and `plotly_contour` have more plotting options.
+
 # WeibullR.plotly 0.1.5
 
 ## Minor improvements and fixes

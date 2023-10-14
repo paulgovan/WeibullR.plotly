@@ -8,7 +8,7 @@ status](https://www.r-pkg.org/badges/version/WeibullR.plotly)](https://CRAN.R-pr
 ![](http://cranlogs.r-pkg.org/badges/grand-total/WeibullR.plotly)
 ![](http://cranlogs.r-pkg.org/badges/WeibullR.plotly) [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![DOI](https://zenodo.org/badge/639144870.svg)](https://zenodo.org/badge/latestdoi/639144870)
+[![DOI](https://zenodo.org/badge/639144870.svg)](https://zenodo.org/doi/10.5281/zenodo.8003549)
 <!-- badges: end -->
 
 Build interactive Weibull Probability Plots with WeibullR, an R package
@@ -60,7 +60,7 @@ plotly_contour(obj)
 WeibullR.plotly has several customization options.
 
 ``` r
-plotly_wblr(obj, main='Weibull Probability Plot', xlab='Years', ylab='Failure Probability', col='blue', signif=4, grid=FALSE)
+plotly_wblr(obj, main='Weibull Probability Plot', xlab='Years', ylab='Failure Probability', confCol='blue', signif=4, grid=FALSE)
 ```
 
 ![](ReadMe_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
@@ -73,7 +73,10 @@ plotly_contour(obj, main='Weibull Contour Plot', col='red', signif=4, grid=FALSE
 
 ## Code of Conduct
 
-Please note that the WeibullR.plotly project is released with a [Contributor Code of Conduct](https://paulgovan.github.io/WeibullR.plotly/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+Please note that the WeibullR.plotly project is released with a
+[Contributor Code of
+Conduct](https://github.com/paulgovan/WeibullR.plotly/blob/f919aeb72a1d4dd3a64e55221eb1ae214b3480f5/CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
 
 # More Resources
 

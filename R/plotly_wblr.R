@@ -25,7 +25,7 @@
 #' @import WeibullR
 #' @import plotly
 #' @importFrom graphics text
-#' @importFrom stats runif
+#' @importFrom stats runif qnorm
 #' @export
 plotly_wblr <- function(wblr_obj,
                         susp=NULL,
@@ -236,6 +236,7 @@ plotly_wblr <- function(wblr_obj,
   # Setup the main probability plot
   yticks <- c(0.000001,0.00001,0.0001,0.001,0.01,0.05,0.1,0.2,0.5,1,2,5,10,20,50,90,99,99.999)
 
+  # Setup the yaxis scale for lognormal vs Weibull
   if(wblr_obj$fit[[1]]$options$dist=='lognormal') {
     yticks_trans <- qnorm(yticks/100)
     yaxis_scale <- 'linear'

@@ -53,7 +53,7 @@ plotly_contour(obj, main='')
 F3.13da <- read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/Figure3.13.csv", header=T)$F3.13da
 F3.13ln2 <- wblr.conf(wblr.fit(wblr(F3.13da,label="Figure3.13"),
                      dist="lognormal",col="magenta"))
-plotly_wblr(F3.13ln2, col='magenta', main='Lognormal Plot')
+plotly_wblr(F3.13ln2, fitCol='magenta', main='Lognormal Plot', showConf = FALSE)
 ```
 
 ### Bathtub life data
@@ -62,7 +62,7 @@ plotly_wblr(F3.13ln2, col='magenta', main='Lognormal Plot')
 agc <- read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/acid_gas_compressor.csv", header=T)$agc
 dafit <- wblr(agc, label="acid gas compressor")
 dafit <- wblr.conf(wblr.fit(dafit,col="red"))
-plotly_wblr(dafit, col="red", main='Bathtub Life Data')
+plotly_wblr(dafit, fitCol="red", main='Bathtub Life Data', showConf = FALSE)
 ```
 
 ### Example from Wayne Nelson in "Applied Life Data Analysis" (1982), page415
@@ -87,8 +87,9 @@ obj <- wblr.fit(obj, method.fit="mle", col="red")
 obj <- wblr.conf(obj, method.conf="fm", ci=.95, lty=2, lwd=1)
 obj <- wblr.conf(obj, method.conf="lrb", ci=.95, lty=2, lwd=1, col="green")
 suspensions <- as.vector(suspensionDF$time)
-plotly_wblr(obj, susp=suspensions, col='red', main='Parts Cracking Inspection Interval Analysis', 
-            ylab='Cumulative % Cracked', xlab='Inspection Time', intcol='blue')
+plotly_wblr(obj, susp=suspensions, fitCol='red', confCol = 'red', intCol = 'blue', 
+            main='Parts Cracking Inspection Interval Analysis', 
+            ylab='Cumulative % Cracked', xlab='Inspection Time')
 ```
 
 ### Comparing the Simple Weibayes Function to a Challenging MLE Contour
