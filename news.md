@@ -1,3 +1,5 @@
+# WeibullR.plotly (development version)
+
 # WeibullR.plotly 0.2.0
 
 # WeibullR.plotly 0.2
