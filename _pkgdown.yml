@@ -1,6 +1,4 @@
 url: https://paulgovan.github.io/WeibullR.plotly/
 template:
   bootstrap: 5
-development:
-  mode: auto
 
