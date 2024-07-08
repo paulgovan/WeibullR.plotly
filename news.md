@@ -1,5 +1,3 @@
-# WeibullR.plotly (development version)
-
 # WeibullR.plotly 0.2.1
 
 ## Minor improvements and fixes
