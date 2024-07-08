@@ -8,8 +8,8 @@ Description: Build interactive Weibull Probability
   <https://CRAN.R-project.org/package=WeibullR>, an R package for 
   Weibull analysis, and 'plotly' by Carson Sievert (2020) <https://plotly-r.com>, 
   an interactive web-based graphing library.
-URL: https://paulgovan.github.io/WeibullR.plotly/
-BugReports: https://github.com/paulgovan/weibullr.plotly/issues
+URL: https://paulgovan.github.io/WeibullR.plotly/, https://github.com/paulgovan/WeibullR.plotly
+BugReports: https://github.com/paulgovan/WeibullR.plotly/issues
 License: Apache License 
 Imports:
   WeibullR,
