@@ -1,4 +1,4 @@
-xname: Draft PDF
+name: Draft PDF
 on: [push]
 
 jobs:
