@@ -3,7 +3,7 @@ pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   OtherExamples: OtherExamples.html
-last_built: 2024-07-15T02:34Z
+last_built: 2024-07-15T02:38Z
 urls:
   reference: https://paulgovan.github.io/WeibullR.plotly/reference
   article: https://paulgovan.github.io/WeibullR.plotly/articles
