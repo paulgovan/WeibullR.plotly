@@ -19,19 +19,37 @@ bibliography: paper.bib
 
 ## Statement of Need
 
-Life data analysis examines the behavior of systems over time. Often termed Weibull data analysis, due to the common use of the Weibull distribution, this field involves iterative data wrangling, modeling, and visualization. Interactive Weibull modeling offers numerous advantages, such as the ability to explore subsamples and uncover hidden data structures. `WeibullR.plotly` [@WeibullRplotly] is an open-source software package designed for creating interactive Weibull Probability Plots. It aims to provide more flexibility for exploratory Weibull analysis than traditional static plotting. The primary users of this project are reliability engineers and university students specializing in reliability engineering.
+Life data analysis examines the behavior of systems over time. Often termed Weibull data analysis, due to the common use of the Weibull distribution, this field involves iterative data wrangling, modeling, and visualization. Interactive Weibull modeling offers numerous advantages, such as the ability to explore subsamples and uncover hidden data structures. `WeibullR.plotly` [@WeibullRplotly] is an open-source software package designed for creating interactive Weibull Probability Plots. It aims to provide more flexibility for exploratory Weibull analysis than traditional static plotting. The primary users of this project are analysts and engineers involved in life data, survival, and reliability analysis.
 
 ## Description
 
-`WeibullR.plotly` is developed in R [@R], leveraging `WeibullR` [@WeibullR], a package dedicated to Life Data Analysis, and `plotly` [@plotly], an interactive web-based graphing library.
+`WeibullR.plotly` is developed in R [@R], leveraging `WeibullR` [@WeibullR], a package dedicated to Life Data Analysis, and `plotly` [@plotly], an interactive web-based graphing library. This combination leverages the strengths of both tools, making `WeibullR.plotly` ideal for embedding in web-based applications, such as `learnr` [@learnr] interactive tutorials or `shiny` [@shiny] web applications. Examples include `WeibullR.learnr` [@WeibullRlearnr], a learnr module for Life Data Analysis, and `WeibullR.shiny` [@WeibullRshiny], a shiny app designed for Weibull Analysis.
 
 ### Usage
 
+`WeibullR.plotly` is available on the Comprehensive R Archive Network (CRAN) as an R package at [https://CRAN.R-project.org/package=WeibullR.plotly](https://CRAN.R-project.org/package=WeibullR.plotly).
+
+To install the release verion in R, use:
+
+```r
+install.packages(“WeibullR.plotly”)
+```
+
+To install the latest development version:
+
+```r
+devtools::install_github(‘paulgovan/WeibullR.plotly’)
+```
+
 #### Weibull Probability Plots 
 
-Fit a `wblr` object to a life data set using the `WeibullR` package, then generate plots with the `plotly_wblr` function.
+To build a Weibull Probability Plot, fit a `wblr` object to a life data set using the `WeibullR` package, then generate plots with the `plotly_wblr` function.
 
 ``` r
+library(WeibullR)
+library(WeibullR.plotly)
+failures<-c(30, 49, 82, 90, 96)
+obj<-wblr.conf(wblr.fit(wblr(failures)))
 plotly_wblr(obj, main='Weibull Probability Plot', xlab='Years', ylab='Failure Probability', confCol='blue', signif=4, grid=FALSE)
 ```
 
@@ -53,17 +71,10 @@ Customize labels, colors, and grids to tailor the plots to specific needs. Refer
 
 ### Documentation and Resources
 
-The project documentation provides:
-
-- **Installation Instructions**: Guidance on installing `WeibullR.plotly` and its dependencies.
-- **Function Examples**: Demonstrations of how to use the package functions.
-- **Unit Tests**: Ensuring code reliability and performance.
-- **Further Learning Resources**:
-  - `WeibullR.learnr` [@WeibullRlearnr]: An interactive introduction to Life Data Analysis.
-  - `WeibullR.shiny` [@WeibullRshiny]: A shiny [@shiny] web application for Life Data Analysis that     leverages `WeibullR.plotly`.
+Full documentation and working examples are available at: [https://paulgovan.github.io/WeibullR.plotly/](https://paulgovan.github.io/WeibullR.plotly/). The project documentation includes guidance on installing `WeibullR.plotly` and its dependencies, demonstrations of how to use the package functions. Unit tests for ensuring code reliability and performance, and further learning resources for getting started with the package.
 
 ### Contribution and Community Engagement
 
-Engineers and analysts are encouraged to use and contribute to the project. The repository includes a Contributor Code of Conduct. Issues and feature requests can be submitted through Issues or Pull Requests.
+Engineers and analysts are encouraged to use and contribute to the project. The repository includes a Contributor Code of Conduct. Issues and feature requests can be submitted through Issues or Pull Requests here: [https://github.com/paulgovan/WeibullR.plotly/issues](https://github.com/paulgovan/WeibullR.plotly/issues).
 
 ## References
