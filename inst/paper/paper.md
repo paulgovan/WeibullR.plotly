@@ -23,7 +23,7 @@ Life data analysis examines the behavior of systems over time. Often termed Weib
 
 ## Description
 
-`WeibullR.plotly` is developed in R [@R], leveraging `WeibullR` [@WeibullR], a package dedicated to Life Data Analysis, and `plotly` [@plotly], an interactive web-based graphing library. This combination leverages the strengths of both tools, making `WeibullR.plotly` ideal for embedding in web-based applications, such as `learnr` [@learnr] interactive tutorials or `shiny` [@shiny] web applications. Examples include `WeibullR.learnr` [@WeibullRlearnr], a learnr module for Life Data Analysis, and `WeibullR.shiny` [@WeibullRshiny], a shiny app designed for Weibull Analysis.
+`WeibullR.plotly` is developed in R [@R], leveraging `WeibullR` [@WeibullR], a package dedicated to Life Data Analysis, and `plotly` [@plotly], an interactive web-based graphing library. This package serves as an add-on to `WeibullR`, enabling web-based graphics. By combining the strengths of both tools,, `WeibullR.plotly` is ideal for embedding in web-based applications, such as `learnr` [@learnr] interactive tutorials or `shiny` [@shiny] web applications. Examples include `WeibullR.learnr` [@WeibullRlearnr], a learnr module for Life Data Analysis, and `WeibullR.shiny` [@WeibullRshiny], a shiny app designed for Weibull Analysis.
 
 ### Usage
 
