@@ -10,8 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/WeibullR.plotly)](https://CRAN.R-project.org/package=WeibullR.plotly)
-![](http://cranlogs.r-pkg.org/badges/grand-total/WeibullR.plotly)
-![](http://cranlogs.r-pkg.org/badges/WeibullR.plotly)
+[![CRAN checks](https://badges.cranchecks.info/summary/WeibullR.plotly.svg)](https://cran.r-project.org/web/checks/check_results_WeibullR.plotly.html)
+[![](http://cranlogs.r-pkg.org/badges/last-month/WeibullR.plotly)](https://cran.r-project.org/package=WeibullR.plotly)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/WeibullR.plotly)](https://cran.r-project.org/package=WeibullR.plotly)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![DOI](https://zenodo.org/badge/639144870.svg)](https://zenodo.org/doi/10.5281/zenodo.8003549)
 <!-- badges: end -->
