@@ -6,13 +6,13 @@
 \usage{
 plotly_contour(
   wblr_obj,
-  main = NULL,
-  xlab = NULL,
-  ylab = NULL,
-  showGrid = NULL,
-  col = NULL,
-  gridCol = NULL,
-  signif = NULL
+  main = "Contour Plot",
+  xlab = "Eta",
+  ylab = "Beta",
+  showGrid = TRUE,
+  col = "black",
+  gridCol = "lightgray",
+  signif = 3
 )
 }
 \arguments{

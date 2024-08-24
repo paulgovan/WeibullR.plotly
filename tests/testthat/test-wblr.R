@@ -13,13 +13,13 @@ test_that("plotly_wblr works with missing optional parameters", {
 })
 
 test_that("plotly_wblr stops with invalid wblr object", {
-  expect_error(plotly_wblr(list()), "Argument \"wblr_obj\" is not of class \"wblr\".")
+  expect_error(plotly_wblr(list()), "Argument 'wblr_obj' is not of class 'wblr'.")
 })
 
 test_that("plotly_wblr stops with invalid susp argument", {
   failures <- c(30, 49, 82, 90, 96)
   obj <- wblr.conf(wblr.fit(wblr(failures), method.fit = 'mle'), method.conf = 'lrb')
-  expect_error(plotly_wblr(obj, susp = "invalid"), "Argument \"susp\" must be a numeric vector")
+  expect_error(plotly_wblr(obj, susp = "invalid"), "Argument 'susp' must be a numeric vector.")
 })
 
 test_that("plotly_wblr works with susp argument", {
