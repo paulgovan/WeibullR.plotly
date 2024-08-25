@@ -41,7 +41,7 @@ plotly_wblr <- function(wblr_obj,
                         fitCol = "black",
                         confCol = "black",
                         intCol = "black",
-                        gridCol = "gray",
+                        gridCol = "lightgray",
                         signif = 3) {
 
   # Validate inputs

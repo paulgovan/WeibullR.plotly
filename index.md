@@ -5,10 +5,13 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/WeibullR.plotly)](https://CRAN.R-project.org/package=WeibullR.plotly)
-![](http://cranlogs.r-pkg.org/badges/grand-total/WeibullR.plotly)
-![](http://cranlogs.r-pkg.org/badges/WeibullR.plotly) [![Lifecycle:
+[![CRAN
+checks](https://badges.cranchecks.info/summary/WeibullR.plotly.svg)](https://cran.r-project.org/web/checks/check_results_WeibullR.plotly.html)
+[![](http://cranlogs.r-pkg.org/badges/last-month/WeibullR.plotly)](https://cran.r-project.org/package=WeibullR.plotly)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/WeibullR.plotly)](https://cran.r-project.org/package=WeibullR.plotly)
+[![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![DOI](https://zenodo.org/badge/639144870.svg)](https://zenodo.org/doi/10.5281/zenodo.8003549)
+[![](https://img.shields.io/badge/doi-10.32614/CRAN.package.WeibullR.plotly-green.svg)](https://doi.org/10.32614/CRAN.package.WeibullR.plotly)
 <!-- badges: end -->
 
 Build interactive Weibull Probability Plots with WeibullR, an R package
@@ -42,7 +45,7 @@ obj<-wblr.conf(wblr.fit(wblr(failures)))
 plotly_wblr(obj)
 ```
 
-![](https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-2-1.png?raw=true)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 To build a contour plot, use the `plotly_contour` function. Note that
 contour plots are only available where `method.fit='mle'` and
@@ -53,7 +56,7 @@ obj<-wblr.conf(wblr.fit(wblr(failures), method.fit = 'mle'), method.conf = 'lrb'
 plotly_contour(obj)
 ```
 
-![](https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-4-1.png?raw=true)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 # Customization
 
@@ -63,13 +66,13 @@ WeibullR.plotly has several customization options.
 plotly_wblr(obj, main='Weibull Probability Plot', xlab='Years', ylab='Failure Probability', confCol='blue', signif=4, grid=FALSE)
 ```
 
-![](https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-5-1.png?raw=true)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 plotly_contour(obj, main='Weibull Contour Plot', col='red', signif=4, grid=FALSE)
 ```
 
-![](https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-6-1.png?raw=true)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ## Code of Conduct
 
