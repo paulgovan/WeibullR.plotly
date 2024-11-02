@@ -1,0 +1,111 @@
+---
+title: "Other Examples"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Other Examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(WeibullR)
+library(WeibullR.plotly)
+```
+
+### A basic example
+
+```{r message=FALSE, warning=FALSE}
+failures <- c(30, 49, 82, 90, 96)
+suspensions <- c(100, 45, 10)
+wblr_obj <- wblr.conf(wblr.fit(wblr(failures, suspensions)))
+plotly_wblr(wblr_obj, susp=suspensions)
+```
+
+### Contour challenge
+
+```{r message=FALSE, warning=FALSE}
+daf<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/contour_challenge/daTEST.csv", header=FALSE)
+das<-read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/contour_challenge/dasuspendedTEST.csv", header=FALSE)
+
+fdf <- as.data.frame(table(daf[,1]))
+ft <- as.numeric(levels(fdf[,1]))
+fq <- fdf[,2]
+sdf <- as.data.frame(table(das[,1]))
+st <- as.numeric(levels(sdf[,1]))
+sq <- sdf[,2]
+fail_edata <- data.frame(time=ft, event=rep(1,length(ft)), qty=fq)
+sus_edata <- data.frame(time=st, event=rep(0, length(st)), qty=sq)
+teq_frame <- rbind(fail_edata, sus_edata)
+obj <- wblr.conf(wblr.fit(wblr(teq_frame), method.fit='mle'), method.conf='lrb')
+plotly_contour(obj, main='')
+```
+
+### Figure 3.13 from "The New Weibull Handbook"
+
+```{r message=FALSE, warning=FALSE}
+F3.13da <- read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/Figure3.13.csv", header=T)$F3.13da
+F3.13ln2 <- wblr.conf(wblr.fit(wblr(F3.13da,label="Figure3.13"),
+                     dist="lognormal",col="magenta"))
+plotly_wblr(F3.13ln2, fitCol='magenta', main='Lognormal Plot', showConf = FALSE)
+```
+
+### Bathtub life data
+
+```{r message=FALSE, warning=FALSE}
+agc <- read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/acid_gas_compressor.csv", header=T)$agc
+dafit <- wblr(agc, label="acid gas compressor")
+dafit <- wblr.conf(wblr.fit(dafit,col="red"))
+plotly_wblr(dafit, fitCol="red", main='Bathtub Life Data', showConf = FALSE)
+```
+
+### Example from Wayne Nelson in "Applied Life Data Analysis" (1982), page415
+
+```{r message=FALSE, warning=FALSE}
+# inspection time
+time <- c(6.12, 19.92, 29.64, 35.4, 39.72, 45.24,52.32, 63.48)
+# quantity of newly identified cracked parts		
+qty <- c(5, 16, 12, 18, 18, 2, 6, 17)		
+x <- data.frame(time, qty)		
+# a single population of parts inspected over time
+# quantity in service (qis)		
+qis = 167		
+# must prepare a mixed input for intervals with no failure data		
+left <- c(0, x$time[-nrow(x)])	
+right <- x$time	
+suspensionDF <- data.frame(time=max(x$time), event=0, qty=qis-sum(x$qty))	
+obj <- wblr(x=suspensionDF, interval=data.frame(left, right, qty=x$qty),
+          interval.lty="dashed", interval.lwd=1, interval.col="blue"
+)	
+obj <- wblr.fit(obj, method.fit="mle", col="red")
+obj <- wblr.conf(obj, method.conf="fm", ci=.95, lty=2, lwd=1)
+obj <- wblr.conf(obj, method.conf="lrb", ci=.95, lty=2, lwd=1, col="green")
+suspensions <- as.vector(suspensionDF$time)
+plotly_wblr(obj, susp=suspensions, fitCol='red', confCol = 'red', intCol = 'blue', 
+            main='Parts Cracking Inspection Interval Analysis', 
+            ylab='Cumulative % Cracked', xlab='Inspection Time')
+```
+
+### Comparing the Simple Weibayes Function to a Challenging MLE Contour
+
+```{r message=FALSE, warning=FALSE}
+daf <- read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/contour_challenge/daTEST.csv", header=FALSE)
+das <- read.csv("https://raw.githubusercontent.com/openrelia/WeibullR.gallery/master/data/contour_challenge/dasuspendedTEST.csv", header=FALSE)
+fdf <- as.data.frame(table(daf[,1]))
+ft <- as.numeric(levels(fdf[,1]))
+fq <- fdf[,2]
+sdf <- as.data.frame(table(das[,1]))
+st <- as.numeric(levels(sdf[,1]))
+sq <- sdf[,2]
+fail_edata <- data.frame(time=ft, event=rep(1,length(ft)), qty=fq)
+sus_edata <- data.frame(time=st, event=rep(0, length(st)), qty=sq)
+teq_frame <- rbind(fail_edata, sus_edata)
+obj <- wblr.conf(wblr.fit(wblr(teq_frame), method.fit='mle'), method.conf='lrb')
+plotly_contour(obj, col='blue', main='')
+```
