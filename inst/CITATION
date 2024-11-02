@@ -3,7 +3,7 @@ citHeader("To cite WeibullR.plotly in publications use:")
 bibentry(
   key      = "wbllrpltl",
   bibtype  = "Manual",
-  title    = "WeibullR.plotly: Interactive Weibull Probability Plots with 'WeibullR'",
+  title    = "WeibullR.plotly: Interactive Weibull Probability Plots",
   author   = "Paul Govan",
   year     = "2023",
   note     = "R package version 0.2.0",

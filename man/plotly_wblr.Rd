@@ -18,7 +18,7 @@ plotly_wblr(
   fitCol = "black",
   confCol = "black",
   intCol = "black",
-  gridCol = "gray",
+  gridCol = "lightgray",
   signif = 3
 )
 }
