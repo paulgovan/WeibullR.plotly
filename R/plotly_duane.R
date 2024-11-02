@@ -47,7 +47,7 @@ plotly_duane <- function(duane_obj,
     # Extract data from duane_obj
     times <- duane_obj$Cumulative_Time
     mtbf <- duane_obj$Cumulative_MTBF
-    fitted <- duane_obj$Cumulative_MTBF
+    fitted <- duane_obj$Fitted_Values
 
     duanePlot <- plot_ly(x=times, y=mtbf, type='scatter', mode='markers',
                          marker=list(color=pointCol), showlegend=FALSE, name="",
@@ -63,7 +63,7 @@ plotly_duane <- function(duane_obj,
       ) %>%
 
       # Add best fit
-      add_trace(x=times, y=mtbf, mode='markers+lines',
+      add_trace(x=times, y=fitted, mode='markers+lines',
                 marker=list(color='transparent'), line = list(color = fitCol),
                 text=~paste0("Fit: ",times,", ",mtbf,")"), hoverinfo = 'text'
       )
