@@ -1,0 +1,15 @@
+url: https://paulgovan.github.io/WeibullR.learnr/
+template:
+  bootstrap: 5
+development:
+  mode: auto
+tutorials:
+- name: WeibullRlearnr
+  title: An Introduction to Life Data Analysis
+  url: https://paulgovan.shinyapps.io/weibullrlearnr/
+- name: RAMRlearnr
+  title: Reliability, Availability, and Maintainability (RAM)
+  url: https://paulgovan.shinyapps.io/ramrlearnr/
+- name: TestRlearnr
+  title: An Introduction to Reliability Testing
+  url: https://govan.shinyapps.io/testrlearnr/
