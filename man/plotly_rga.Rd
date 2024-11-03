@@ -49,8 +49,8 @@ Interactive Reliability Growth Plot.
 }
 \examples{
 library(ReliaGrowR)
-times <- c(100, 200, 300, 400, 500)
-failures <- c(1, 2, 1, 3, 2)
-rga <- rga(times, failures)
+times<-c(100, 200, 300, 400, 500)
+failures<-c(1, 2, 1, 3, 2)
+rga<-rga(times, failures)
 plotly_rga(rga)
 }

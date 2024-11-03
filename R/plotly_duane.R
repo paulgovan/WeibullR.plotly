@@ -11,9 +11,9 @@
 #' @return The function returns no value.
 #' @examples
 #' library(ReliaGrowR)
-#' times <- c(100, 200, 300, 400, 500)
-#' failures <- c(1, 2, 1, 3, 2)
-#' fit <- duane_plot(times, failures)
+#' times<-c(100, 200, 300, 400, 500)
+#' failures<-c(1, 2, 1, 3, 2)
+#' fit<-duane_plot(times, failures)
 #' plotly_duane(fit)
 #' @import ReliaGrowR plotly
 #' @importFrom graphics text
@@ -51,7 +51,7 @@ plotly_duane <- function(duane_obj,
 
     duanePlot <- plot_ly(x=times, y=mtbf, type='scatter', mode='markers',
                          marker=list(color=pointCol), showlegend=FALSE, name="",
-                         text=~paste0("MTBF: (",times,", ",failures,")"), hoverinfo = 'text'
+                         text=~paste0("MTBF: (",times,", ",mtbf,")"), hoverinfo = 'text'
     ) %>%
 
       # Set up the main probability plot layout
@@ -65,7 +65,7 @@ plotly_duane <- function(duane_obj,
       # Add best fit
       add_trace(x=times, y=fitted, mode='markers+lines',
                 marker=list(color='transparent'), line = list(color = fitCol),
-                text=~paste0("Fit: ",times,", ",mtbf,")"), hoverinfo = 'text'
+                text=~paste0("Fit: ",times,", ",fitted,")"), hoverinfo = 'text'
       )
 
     return(duanePlot)
