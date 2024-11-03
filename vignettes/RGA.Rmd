@@ -17,9 +17,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-Start by loading `ReliaGrowR` and `WeibullR.plotly`
+To run a Reliability Growth Analysis, start by loading `ReliaGrowR` and `WeibullR.plotly`
 
-```{r setup}
+```{r setup, warning=FALSE}
 library(ReliaGrowR)
 library(WeibullR.plotly)
 ```
@@ -50,20 +50,6 @@ breakpoints <- 400
 Then run the rga and plot the results:
 ```{r}
 result <- rga(times, failures, model_type = "Piecewise Weibull NHPP", breakpoints = breakpoints)
-plotly_rga(result, fitCol = "blue", confCol = "blue", breakCol = "red")
-```
-
-## Piecewise Weibull NHPP with Change Point Detection
-
-To run a Piecewise Weibull NHPP with Change Point Detection, first set up some cumulative time and failure data:
-```{r}
-times <- c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000)
-failures <- c(1, 2, 1, 1, 1, 2, 3, 1, 2, 4)
-```
-
-Then run the rga and plot the results:
-```{r}
-result <- rga(times, failures, model_type = "Piecewise Weibull NHPP")
 plotly_rga(result, fitCol = "blue", confCol = "blue", breakCol = "red")
 ```
 

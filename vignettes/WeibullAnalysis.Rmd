@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Start by loading `WeibullR` and `WeibullR.plotly`
+To run a Weibull Analysis, start by loading `WeibullR` and `WeibullR.plotly`
 
 ```{r setup}
 library(WeibullR)
@@ -26,10 +26,15 @@ library(WeibullR.plotly)
 
 ## A Basic Example
 
-Let's run a basic example with `WeibullR.plotly`. First, create some failure data for 5 different machines that fail at time 30, 49, 82, 90, and 96 respectively. Then use the `WeibullR` package to fit a Weibull distribution to the data. Finally, use the `plotly_wblr()` function to create a probability plot.
+Next, create some failure data for 5 different machines that fail at time 30, 49, 82, 90, and 96 respectively. 
 
 ```{r echo=TRUE}
 failures <- c(30, 49, 82, 90, 96)
+```
+
+Then use the `WeibullR` package to fit a Weibull distribution to the data, and the `plotly_wblr()` function to create a probability plot.
+
+```{r echo=TRUE}
 obj <- wblr.conf(wblr.fit(wblr(failures)))
 plotly_wblr(obj)
 ```
@@ -74,22 +79,17 @@ plotly_wblr(obj, susp = suspensions, fitCol = 'red', confCol = 'red', intCol = '
 
 ## 3-Parameter Weibull Model
 
-Here is an example from "The New Weibull Handbook" by Robert Abernethy (2004). 
-
-Let's run this example as a 3P Weibull.
+To fit a 3P Weibull, let's create some new failure data and plot the results.
 
 ```{r echo=TRUE}
-failures <- c(3.46623, 3.732711, 4.052996, 4.628703, 4.8157, 5.84517, 5.888313, 5.892967,
-            8.168362, 10.02799, 10.06062, 10.49785, 11.11493, 11.87369, 12.21122, 12.51854, 
-            12.91357, 18.04246, 18.20712, 19.57305, 21.20873, 30.03917, 34.88001, 36.87355,
-            53.91168)
-fit<- wblr.conf(wblr.fit(wblr(failures), dist = "weibull3p"))
+failures <- c(25, 30, 42, 49, 55, 67, 73, 82, 90, 96, 101, 110, 120, 132, 145)
+fit <- wblr.conf(wblr.fit(wblr(failures), dist = "weibull3p"))
 plotly_wblr(fit, fitCol='darkgreen', confCol = 'darkgreen')
 ```
 
 ## Contour Plots
 
-Let's rerun the first example and build a contour plot.
+To build a contour plot, let's rerun the first example and use the `plotly_contour()` function to create a plot.
 
 ```{r echo=TRUE}
 failures <- c(30, 49, 82, 90, 96)
