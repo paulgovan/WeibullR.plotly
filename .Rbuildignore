@@ -6,6 +6,7 @@
 ^ReadMe\.Rmd$
 ^_pkgdown\.yml$
 ^docs$
+^doc$
 ^pkgdown$
 ^\.github$
 ^index\.md$
