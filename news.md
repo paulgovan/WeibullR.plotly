@@ -1,3 +1,8 @@
+# WeibullR.plotly 0.3
+* Now with support for Reliability Growth Analysis via the `plotly_duane` and `plotly_rga` functions.
+* New vignettes on Weibull Analysis and Reliability Growth Analysis.
+* Other minor improvements and bug fixes.
+
 # WeibullR.plotly 0.2.1
 
 ## Minor improvements and fixes
