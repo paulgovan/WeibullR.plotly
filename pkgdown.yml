@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   RGA: RGA.html
   weibull: weibull.html
-last_built: 2024-11-06T16:17Z
+last_built: 2024-11-06T16:34Z
 urls:
   reference: https://paulgovan.github.io/WeibullR.plotly/reference
   article: https://paulgovan.github.io/WeibullR.plotly/articles
