@@ -1,11 +1,11 @@
 ---
 title: "Reliability Growth Analysis"
-output:
-  html_vignette:
+output: 
+  rmarkdown::html_vignette:
     fig_width: 7
     fig_height: 5
 vignette: >
-  %\VignetteIndexEntry{Reliability Growth Analysis}
+  %\VignetteIndexEntry{rga}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

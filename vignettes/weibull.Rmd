@@ -1,11 +1,11 @@
 ---
 title: "Weibull Analysis"
-output:
-  html_vignette:
+output: 
+  rmarkdown::html_vignette:
     fig_width: 7
     fig_height: 5
 vignette: >
-  %\VignetteIndexEntry{Weibull Analysis}
+  %\VignetteIndexEntry{weibull}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -96,4 +96,3 @@ failures <- c(30, 49, 82, 90, 96)
 obj <- wblr.conf(wblr.fit(wblr(failures), method.fit = 'mle'), method.conf = 'lrb')
 plotly_contour(obj, col = "blue")
 ```
-

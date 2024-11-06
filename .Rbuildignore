@@ -6,7 +6,6 @@
 ^ReadMe\.Rmd$
 ^_pkgdown\.yml$
 ^docs$
-^doc$
 ^pkgdown$
 ^\.github$
 ^index\.md$
@@ -17,3 +16,5 @@
 ^revdep$
 ^CODE_OF_CONDUCT\.md$
 ^codecov\.yml$
+^Meta$
+
