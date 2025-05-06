@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotly_contour.R
 \name{plotly_contour}
 \alias{plotly_contour}
-\title{Interactive Contour Plot.}
+\title{Interactive Contour Plot}
 \usage{
 plotly_contour(
   wblr_obj,
@@ -36,7 +36,7 @@ plotly_contour(
 The function returns no value.
 }
 \description{
-Interactive Contour Plot.
+This function creates an interactive contour plot for a WeibullR object.
 }
 \examples{
 library(WeibullR)

@@ -57,7 +57,7 @@ plotly_wblr(
 The function returns no value.
 }
 \description{
-Interactive Probability Plot.
+This function creates an interactive probability plot for a wblr object.
 }
 \examples{
 library(WeibullR)

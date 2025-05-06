@@ -45,7 +45,7 @@ plotly_rga(
 The function returns no value.
 }
 \description{
-Interactive Reliability Growth Plot.
+This function creates an interactive reliability growth plot for an rga object.
 }
 \examples{
 library(ReliaGrowR)

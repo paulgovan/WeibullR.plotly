@@ -36,7 +36,7 @@ plotly_duane(
 The function returns no value.
 }
 \description{
-Interactive Duane Plot.
+This function creates an interactive Duane plot for a duane object.
 }
 \examples{
 library(ReliaGrowR)

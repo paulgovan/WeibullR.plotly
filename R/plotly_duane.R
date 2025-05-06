@@ -1,5 +1,7 @@
 #' Interactive Duane Plot.
 #'
+#' This function creates an interactive Duane plot for a duane object.
+#'
 #' @param duane_obj An object of class 'duane'.
 #' @param showGrid Show grid (TRUE) or hide grid (FALSE).
 #' @param main Main title.

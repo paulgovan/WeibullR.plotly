@@ -1,5 +1,7 @@
 #' Interactive Probability Plot.
 #'
+#' This function creates an interactive probability plot for a wblr object.
+#'
 #' @param wblr_obj An object of class 'wblr'.
 #' @param susp An optional numeric vector of suspension data.
 #' @param showConf Show the confidence bounds (TRUE) or not (FALSE).

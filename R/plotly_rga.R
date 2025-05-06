@@ -1,5 +1,7 @@
 #' Interactive Reliability Growth Plot.
 #'
+#' This function creates an interactive reliability growth plot for an rga object.
+#'
 #' @param rga_obj An object of class 'rga'.
 #' @param showConf Show the confidence bounds (TRUE) or not (FALSE).
 #' @param showGrid Show grid (TRUE) or hide grid (FALSE).

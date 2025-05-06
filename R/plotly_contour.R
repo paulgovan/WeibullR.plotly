@@ -1,4 +1,6 @@
-#' Interactive Contour Plot.
+#' Interactive Contour Plot
+#'
+#' This function creates an interactive contour plot for a WeibullR object.
 #'
 #' @param wblr_obj An object of class 'wblr'.
 #' @param main Main title.
