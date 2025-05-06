@@ -57,12 +57,13 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>Build interactive Weibull Probability Plots with WeibullR, an R package for Weibull analysis, and plotly, an interactive web-based graphing library.</p>
+<!-- badges: end -->
+<p>Build interactive Weibull Probability Plots with <code>WeibullR</code>, an R package for Weibull analysis, and <code>plotly</code>, an interactive web-based graphing library.</p>
 </div>
 <div class="section level1">
 <h1 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
 </h1>
-<p>To install WeibullR.plotly in R:</p>
+<p>To install <code>WeibullR.plotly</code> in R:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'WeibullR.plotly'</span><span class="op">)</span></span></code></pre></div>
 <p>Or install the development version:</p>
@@ -79,7 +80,7 @@
 <span><span class="va">failures</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">49</span>, <span class="fl">82</span>, <span class="fl">90</span>, <span class="fl">96</span><span class="op">)</span></span>
 <span><span class="va">obj</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/WeibullR/man/wblr.conf.html" class="external-link">wblr.conf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/WeibullR/man/wblr.fit.html" class="external-link">wblr.fit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/WeibullR/man/wblr.html" class="external-link">wblr</a></span><span class="op">(</span><span class="va">failures</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/plotly_wblr.html">plotly_wblr</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></code></pre></div>
-<p><img src="https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-3-1.png?raw=true"><!-- --></p>
+<p><img src="https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-3-1.png?raw=true"></p>
 <p>To build a contour plot, use the <code>plotly_contour</code> function. Note that contour plots are only available where <code>method.fit='mle'</code> and <code>method.conf='lrb'</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obj</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/WeibullR/man/wblr.conf.html" class="external-link">wblr.conf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/WeibullR/man/wblr.fit.html" class="external-link">wblr.fit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/WeibullR/man/wblr.html" class="external-link">wblr</a></span><span class="op">(</span><span class="va">failures</span><span class="op">)</span>, method.fit <span class="op">=</span> <span class="st">'mle'</span><span class="op">)</span>, method.conf <span class="op">=</span> <span class="st">'lrb'</span><span class="op">)</span></span>
@@ -92,7 +93,7 @@
 <p>WeibullR.plotly has several customization options.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plotly_wblr.html">plotly_wblr</a></span><span class="op">(</span><span class="va">obj</span>, main<span class="op">=</span><span class="st">'Weibull Probability Plot'</span>, xlab<span class="op">=</span><span class="st">'Years'</span>, ylab<span class="op">=</span><span class="st">'Failure Probability'</span>, confCol<span class="op">=</span><span class="st">'blue'</span>, signif<span class="op">=</span><span class="fl">4</span>, grid<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-5-1.png?raw=true"><!-- --></p>
+<p><img src="https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-5-1.png?raw=true"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plotly_contour.html">plotly_contour</a></span><span class="op">(</span><span class="va">obj</span>, main<span class="op">=</span><span class="st">'Weibull Contour Plot'</span>, col<span class="op">=</span><span class="st">'red'</span>, signif<span class="op">=</span><span class="fl">4</span>, grid<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-6-1.png?raw=true"><!-- --></p>
@@ -105,8 +106,8 @@
 <div class="section level1">
 <h1 id="more-resources">More Resources<a class="anchor" aria-label="anchor" href="#more-resources"></a>
 </h1>
-<p>For an interactive introduction to Life Data Analysis, check out <a href="https://paulgovan.github.io/WeibullR.learnr/" class="external-link">WeibullR.learnr</a></p>
-<p>To try WeibullR.plotly in a Shiny app, check out <a href="https://paulgovan.github.io/WeibullR.shiny/" class="external-link">WeibullR.shiny</a></p>
+<p><a href="https://paulgovan.github.io/WeibullR.learnr/" class="external-link">WeibullR.learnr</a> - an interactive introduction to Life Data Analysis</p>
+<p><a href="https://paulgovan.github.io/WeibullR.shiny/" class="external-link">WeibullR.shiny</a> - a shiny app for Weibull Analysis</p>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
