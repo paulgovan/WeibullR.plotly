@@ -1,3 +1,5 @@
+
+
 #' Interactive Probability Plot.
 #'
 #' This function creates an interactive probability plot for a wblr object.

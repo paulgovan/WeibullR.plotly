@@ -12,15 +12,16 @@ checks](https://badges.cranchecks.info/summary/WeibullR.plotly.svg)](https://cra
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![](https://img.shields.io/badge/doi-10.32614/CRAN.package.WeibullR.plotly-green.svg)](https://doi.org/10.32614/CRAN.package.WeibullR.plotly)
+
 <!-- badges: end -->
 
-Build interactive Weibull Probability Plots with WeibullR, an R package
-for Weibull analysis, and plotly, an interactive web-based graphing
-library.
+Build interactive Weibull Probability Plots with `WeibullR`, an R
+package for Weibull analysis, and `plotly`, an interactive web-based
+graphing library.
 
 # Getting Started
 
-To install WeibullR.plotly in R:
+To install `WeibullR.plotly` in R:
 
 ``` r
 install.packages('WeibullR.plotly')
@@ -45,7 +46,7 @@ obj<-wblr.conf(wblr.fit(wblr(failures)))
 plotly_wblr(obj)
 ```
 
-![](https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-3-1.png?raw=true)<!-- -->
+![](https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-3-1.png?raw=true)
 
 To build a contour plot, use the `plotly_contour` function. Note that
 contour plots are only available where `method.fit='mle'` and
@@ -66,7 +67,7 @@ WeibullR.plotly has several customization options.
 plotly_wblr(obj, main='Weibull Probability Plot', xlab='Years', ylab='Failure Probability', confCol='blue', signif=4, grid=FALSE)
 ```
 
-![](https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-5-1.png?raw=true)<!-- -->
+![](https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe_files/figure-gfm/unnamed-chunk-5-1.png?raw=true)
 
 ``` r
 plotly_contour(obj, main='Weibull Contour Plot', col='red', signif=4, grid=FALSE)
@@ -83,8 +84,8 @@ By contributing to this project, you agree to abide by its terms.
 
 # More Resources
 
-For an interactive introduction to Life Data Analysis, check out
-[WeibullR.learnr](https://paulgovan.github.io/WeibullR.learnr/)
+[WeibullR.learnr](https://paulgovan.github.io/WeibullR.learnr/) - an
+interactive introduction to Life Data Analysis
 
-To try WeibullR.plotly in a Shiny app, check out
-[WeibullR.shiny](https://paulgovan.github.io/WeibullR.shiny/)
+[WeibullR.shiny](https://paulgovan.github.io/WeibullR.shiny/) - a shiny
+app for Weibull Analysis
