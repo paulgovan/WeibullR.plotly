@@ -13,12 +13,12 @@ test_that("plotly_contour returns a plotly object", {
 
 test_that("plotly_contour handles invalid wblr_obj", {
   invalid_wblr_obj <- list(a = 1, b = 2)
-  expect_error(plotly_contour(invalid_wblr_obj), "Argument \"wblr_obj\" is not of class \"wblr\".")
+  expect_error(plotly_contour(invalid_wblr_obj), "All inputs must be of class 'wblr'.")
 })
 
 test_that("plotly_contour handles wblr_obj without contours", {
   no_contour_wblr_obj <- wblr(failures)
-  expect_error(plotly_contour(no_contour_wblr_obj), "Contour plots are only available for \"wblr_obj\"s with \"method.conf='lrb'\".")
+  expect_error(plotly_contour(no_contour_wblr_obj), "Each wblr object must have contours generated using method.conf='lrb'.")
 })
 
 

@@ -1,116 +1,126 @@
+
 #' Interactive Contour Plot
 #'
-#' This function creates an interactive contour plot for a WeibullR object.
+#' This function creates an interactive contour plot for one or more
+#' `wblr` objects, each assumed to have confidence contours generated via
+#' `method.conf = 'lrb'`. The function overlays all contours in a single plot and displays
+#' their respective MLE point estimates.
 #'
-#' @param wblr_obj An object of class 'wblr'.
-#' @param main Main title.
-#' @param xlab X-axis label.
-#' @param ylab Y-axis label.
-#' @param showGrid Show grid (TRUE) or hide grid (FALSE).
-#' @param col Color of the model contour
-#' @param gridCol Color of the grid.
-#' @param signif Significant digits of results
-#' @return The function returns no value.
+#' @param wblr_obj A single `wblr` object or a list of `wblr` objects.
+#' @param main Main title for the plot.
+#' @param xlab X-axis label (typically Eta or Sigmalog).
+#' @param ylab Y-axis label (typically Beta or Mulog).
+#' @param showGrid Logical; whether to show grid lines (default TRUE).
+#' @param cols Optional vector of colors for each contour/estimate pair. If not provided,
+#'   colors are chosen from a default palette.
+#' @param gridCol Color of the grid lines (default 'lightgray').
+#' @param signif Number of significant digits to display for estimates and contour coordinates.
+#'
+#' @return A `plotly` object representing the interactive contour plot.
+#'
 #' @examples
 #' library(WeibullR)
 #' library(WeibullR.plotly)
-#' failures<-c(30, 49, 82, 90, 96)
-#' obj<-wblr.conf(wblr.fit(wblr(failures), method.fit = 'mle'), method.conf = 'lrb')
-#' plotly_contour(obj)
-#' @import WeibullR
-#' @import plotly
+#'
+#' failures1 <- c(30, 49, 82, 90, 96)
+#' failures2 <- c(20, 40, 60, 80, 100)
+#' obj1 <- wblr.conf(wblr.fit(wblr(failures1), method.fit = 'mle'), method.conf = 'lrb')
+#' obj2 <- wblr.conf(wblr.fit(wblr(failures2), method.fit = 'mle'), method.conf = 'lrb')
+#' plotly_contour(list(obj1, obj2), main = "Overlayed Contours")
+#'
+#' @importFrom plotly plot_ly add_trace layout toRGB
 #' @export
 plotly_contour <- function(wblr_obj,
-                           main='Contour Plot',
-                           xlab='Eta',
-                           ylab='Beta',
-                           showGrid=TRUE,
-                           col='black',
-                           gridCol='lightgray',
-                           signif=3)
-  {
+                           main = 'Contour Plot',
+                           xlab = 'Eta',
+                           ylab = 'Beta',
+                           showGrid = TRUE,
+                           cols = NULL,
+                           gridCol = 'lightgray',
+                           signif = 3) {
 
-  # Validate inputs
-  validate_inputs <- function() {
-    # Check for a wblr object
-    if(!identical(class(wblr_obj),"wblr")){
-      stop("Argument \"wblr_obj\" is not of class \"wblr\".")
+  # Handle input as a list if not already
+  if (!is.list(wblr_obj) || inherits(wblr_obj, "wblr")) {
+    wblr_obj <- list(wblr_obj)
+  }
+
+  # Validate all inputs
+  lapply(wblr_obj, function(obj) {
+    if (!inherits(obj, "wblr")) {
+      stop("All inputs must be of class 'wblr'.")
+    }
+    if (!identical(obj$fit[[1]]$conf[[1]]$options$method.conf, "lrb")) {
+      stop("Each wblr object must have contours generated using method.conf='lrb'.")
+    }
+  })
+
+  # Set colors
+  if (is.null(cols)) {
+    default_colors <- c(
+      "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728",
+      "#9467bd", "#8c564b", "#e377c2", "#7f7f7f",
+      "#bcbd22", "#17becf"
+    )
+    cols <- rep(default_colors, length.out = length(wblr_obj))
+  }
+
+  # Start plotly object
+  p <- plot_ly()
+
+  for (i in seq_along(wblr_obj)) {
+    obj <- wblr_obj[[i]]
+    col <- cols[i]
+
+    dist_type <- obj$fit[[1]]$options$dist
+    fit_vec <- as.numeric(obj$fit[[1]]$fit_vec)
+    contour <- obj$fit[[1]]$conf[[1]]$contour
+
+    if (dist_type %in% c("weibull", "weibull3p")) {
+      param1 <- 'Beta'; param2 <- 'Eta'
+      val1 <- round(fit_vec[2], signif); val2 <- round(fit_vec[1], signif)
+    } else if (dist_type == "lognormal") {
+      param1 <- 'Mulog'; param2 <- 'Sigmalog'
+      val1 <- round(fit_vec[1], signif); val2 <- round(fit_vec[2], signif)
+    } else {
+      next
     }
 
-    # Check for contours
-    if(!identical(wblr_obj$fit[[1]]$conf[[1]]$options$method.conf,"lrb")){
-      stop("Contour plots are only available for \"wblr_obj\"s with \"method.conf='lrb'\".")
-    }
-  }
-  validate_inputs()
+    fillcolor <- toRGB(col, 0.2)
 
-  ## Begin extracting data from the wblr object
-
-  # Check the distribution
-  if(is.null(wblr_obj$fit)) {
-    param1 <- NULL
-    param2 <- NULL
-    paramval1 <- NULL
-    paramval2 <- NULL
-  }
-  else if(wblr_obj$fit[[1]]$options$dist=='lognormal') {
-    param1 <- 'Mulog'
-    param2 <- 'Sigmalog'
-    paramval1 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[1]), signif)
-    paramval2 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[2]), signif)
-  }
-  else if(wblr_obj$fit[[1]]$options$dist=='weibull'){
-    param1 <- 'Beta'
-    param2 <- 'Eta'
-    paramval1 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[2]), signif)
-    paramval2 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[1]), signif)
-  }
-  else if(wblr_obj$fit[[1]]$options$dist=='weibull3p'){
-    param1 <- 'Beta'
-    param2 <- 'Eta'
-    paramval1 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[2]), signif)
-    paramval2 <- round(as.numeric(wblr_obj$fit[[1]]$fit_vec[1]), signif)
-  }
-
-  # Get the x and y values
-  xvals <- round(wblr_obj$fit[[1]]$conf[[1]]$contour[[1]], signif)
-  yvals <- round(wblr_obj$fit[[1]]$conf[[1]]$contour[[2]], signif)
-
-  ## End extracting data from the wblr object
-
-  # Build the contour plot
-  plotContour <- function() {
-
-    # Set up the plot layout
-    fillcolor <- plotly::toRGB(col, 0.2)
-    xgrid <- ifelse(is.null(showGrid) || isTRUE(showGrid), TRUE, FALSE)
-    ygrid <- xgrid
-
-    # Build the contour plot
-    contPlot <- plot_ly(x=xvals, y=yvals, type='scatter', mode='markers+lines',
-                        showlegend=FALSE, fill='tonexty', fillcolor=fillcolor,
-                        marker=list(color='transparent'), line=list(color='transparent'),
-                        text=~paste0("Contour: (",xvals,", ",yvals,")"), hoverinfo = 'text'
-    ) %>%
-
-      # Specify the layout for the contour plot
-      layout(title=main,
-             xaxis = list(title=xlab, showline=TRUE, mirror='ticks',
-                          showgrid=xgrid, gridcolor=gridCol),
-             yaxis = list(title=ylab, showline=TRUE, mirror = 'ticks',
-                          showgrid=ygrid, gridcolor=gridCol)
+    # Add contour
+    p <- p %>%
+      add_trace(
+        x = round(contour[[1]], signif),
+        y = round(contour[[2]], signif),
+        type = 'scatter',
+        mode = 'lines',
+        fill = 'toself',
+        fillcolor = fillcolor,
+        line = list(color = col),
+        name = paste("Contour", i),
+        hoverinfo = 'text',
+        text = ~paste0("Contour (", round(contour[[1]], signif), ", ", round(contour[[2]], signif), ")")
       ) %>%
-
-      # Add parameter estimates
-      add_trace(x=paramval2, y=paramval1, mode='markers+lines',
-                marker=list(color='black', size=20),
-                text=~paste0("Estimates: (",paramval2,", ",paramval1,")"), hoverinfo = 'text')
-
-    return(contPlot)
+      add_trace(
+        x = val2,
+        y = val1,
+        type = 'scatter',
+        mode = 'markers',
+        marker = list(color = col, size = 10, symbol = "x"),
+        name = paste("Estimate", i),
+        hoverinfo = 'text',
+        text = ~paste0("Estimate: (", val2, ", ", val1, ")")
+      )
   }
 
-  # Main function body
-  cont_plot <- plotContour()
+  # Add layout
+  p <- p %>%
+    layout(
+      title = main,
+      xaxis = list(title = xlab, showgrid = showGrid, gridcolor = gridCol),
+      yaxis = list(title = ylab, showgrid = showGrid, gridcolor = gridCol),
+      showlegend = TRUE
+    )
 
-  return(cont_plot)
+  return(p)
 }

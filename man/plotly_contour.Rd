@@ -10,38 +10,46 @@ plotly_contour(
   xlab = "Eta",
   ylab = "Beta",
   showGrid = TRUE,
-  col = "black",
+  cols = NULL,
   gridCol = "lightgray",
   signif = 3
 )
 }
 \arguments{
-\item{wblr_obj}{An object of class 'wblr'.}
+\item{wblr_obj}{A single `wblr` object or a list of `wblr` objects.}
 
-\item{main}{Main title.}
+\item{main}{Main title for the plot.}
 
-\item{xlab}{X-axis label.}
+\item{xlab}{X-axis label (typically Eta or Sigmalog).}
 
-\item{ylab}{Y-axis label.}
+\item{ylab}{Y-axis label (typically Beta or Mulog).}
 
-\item{showGrid}{Show grid (TRUE) or hide grid (FALSE).}
+\item{showGrid}{Logical; whether to show grid lines (default TRUE).}
 
-\item{col}{Color of the model contour}
+\item{cols}{Optional vector of colors for each contour/estimate pair. If not provided,
+colors are chosen from a default palette.}
 
-\item{gridCol}{Color of the grid.}
+\item{gridCol}{Color of the grid lines (default 'lightgray').}
 
-\item{signif}{Significant digits of results}
+\item{signif}{Number of significant digits to display for estimates and contour coordinates.}
 }
 \value{
-The function returns no value.
+A `plotly` object representing the interactive contour plot.
 }
 \description{
-This function creates an interactive contour plot for a WeibullR object.
+This function creates an interactive contour plot for one or more
+`wblr` objects, each assumed to have confidence contours generated via
+`method.conf = 'lrb'`. The function overlays all contours in a single plot and displays
+their respective MLE point estimates.
 }
 \examples{
 library(WeibullR)
 library(WeibullR.plotly)
-failures<-c(30, 49, 82, 90, 96)
-obj<-wblr.conf(wblr.fit(wblr(failures), method.fit = 'mle'), method.conf = 'lrb')
-plotly_contour(obj)
+
+failures1 <- c(30, 49, 82, 90, 96)
+failures2 <- c(20, 40, 60, 80, 100)
+obj1 <- wblr.conf(wblr.fit(wblr(failures1), method.fit = 'mle'), method.conf = 'lrb')
+obj2 <- wblr.conf(wblr.fit(wblr(failures2), method.fit = 'mle'), method.conf = 'lrb')
+plotly_contour(list(obj1, obj2), main = "Overlayed Contours")
+
 }

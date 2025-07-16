@@ -105,7 +105,10 @@ plotly_rga <- function(rga_obj,
       ) %>%
 
       # Add vertical lines at the change points
-      layout(shapes = list(vline(rga_obj$breakpoints)))
+      layout(shapes = list(
+        vline(exp(as.numeric(rga_obj$breakpoints)))
+      )
+      )
 
     return(growthPlot)
   }
