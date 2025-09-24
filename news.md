@@ -1,3 +1,9 @@
+# WeibullR.plotly 0.3.2
+
+## Bug fix
+* Fixes bug with `duane` function.
+* Other minor improvements and bug fixes.
+
 # WeibullR.plotly 0.3.1
 
 ## Minor improvements and fixes
