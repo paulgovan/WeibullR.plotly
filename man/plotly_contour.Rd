@@ -16,7 +16,8 @@ plotly_contour(
 )
 }
 \arguments{
-\item{wblr_obj}{A single `wblr` object or a list of `wblr` objects.}
+\item{wblr_obj}{A single `wblr` object or a list of `wblr` objects. Each object
+must have contours generated using `method.conf = 'lrb'`.}
 
 \item{main}{Main title for the plot.}
 
@@ -31,7 +32,8 @@ colors are chosen from a default palette.}
 
 \item{gridCol}{Color of the grid lines (default 'lightgray').}
 
-\item{signif}{Number of significant digits to display for estimates and contour coordinates.}
+\item{signif}{Number of significant digits to display for estimates and contour coordinates.
+Defaults to 3.}
 }
 \value{
 A `plotly` object representing the interactive contour plot.

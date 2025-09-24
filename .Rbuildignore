@@ -18,3 +18,4 @@
 ^codecov\.yml$
 ^Meta$
 
+^codemeta\.json$

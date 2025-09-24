@@ -1,8 +1,12 @@
 #' Interactive Reliability Growth Plot.
 #'
-#' This function creates an interactive reliability growth plot for an rga object.
+#' The function creates an interactive reliability growth plot for an `rga` object.
+#' The plot includes cumulative failures over time, the model fit, and optional confidence bounds.
+#' Vertical lines indicate change points if breakpoints are specified in the rga object.
 #'
-#' @param rga_obj An object of class 'rga'.
+#'
+#' @param rga_obj An object of class 'rga'. This object is created using the
+#' `rga()` function from the `ReliaGrowR` package.
 #' @param showConf Show the confidence bounds (TRUE) or not (FALSE).
 #' @param showGrid Show grid (TRUE) or hide grid (FALSE).
 #' @param main Main title.
@@ -13,13 +17,19 @@
 #' @param confCol Color of the confidence bounds.
 #' @param gridCol Color of the grid.
 #' @param breakCol Color of the breakpoints.
-#' @return The function returns no value.
+#' @return The function returns no value. It generates an interactive plotly plot.
 #' @examples
 #' library(ReliaGrowR)
 #' times<-c(100, 200, 300, 400, 500)
 #' failures<-c(1, 2, 1, 3, 2)
 #' rga<-rga(times, failures)
 #' plotly_rga(rga)
+#'
+#' times <- c(100, 200, 300, 400, 500, 600, 700, 800, 900, 1000)
+#' failures <- c(1, 2, 1, 1, 1, 2, 3, 1, 2, 4)
+#' breakpoints <- 400
+#' rga2 <- rga(times, failures, model_type = "Piecewise NHPP", breaks = breakpoints)
+#' plotly_rga(rga2, fitCol = "blue", confCol = "blue", breakCol = "red")
 #' @import ReliaGrowR plotly
 #' @importFrom graphics text
 #' @importFrom stats runif qnorm

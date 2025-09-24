@@ -1,0 +1,189 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "WeibullR.plotly",
+  "description": "Build interactive Weibull Probability Plots with 'WeibullR' by David Silkworth and Jurgen Symynck (2022) <https://CRAN.R-project.org/package=WeibullR>, an R package for Weibull analysis, and 'plotly' by Carson Sievert (2020) <https://plotly-r.com>, an interactive web-based graphing library.",
+  "name": "WeibullR.plotly: Interactive Weibull Probability Plots",
+  "relatedLink": ["https://paulgovan.github.io/WeibullR.plotly/", "https://CRAN.R-project.org/package=WeibullR.plotly"],
+  "codeRepository": "https://github.com/paulgovan/WeibullR.plotly",
+  "issueTracker": "https://github.com/paulgovan/WeibullR.plotly/issues",
+  "license": "Apache License",
+  "version": "0.3.1",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Paul",
+      "familyName": "Govan",
+      "email": "paul.govan2@gmail.com",
+      "@id": "https://orcid.org/0000-0002-1821-8492"
+    }
+  ],
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Paul",
+      "familyName": "Govan",
+      "email": "paul.govan2@gmail.com",
+      "@id": "https://orcid.org/0000-0002-1821-8492"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Paul",
+      "familyName": "Govan",
+      "email": "paul.govan2@gmail.com",
+      "@id": "https://orcid.org/0000-0002-1821-8492"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "spelling",
+      "name": "spelling",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=spelling"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 3.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "WeibullR.learnr",
+      "name": "WeibullR.learnr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=WeibullR.learnr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "WeibullR.shiny",
+      "name": "WeibullR.shiny",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=WeibullR.shiny"
+    }
+  ],
+  "softwareRequirements": {
+    "1": {
+      "@type": "SoftwareApplication",
+      "identifier": "plotly",
+      "name": "plotly",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=plotly"
+    },
+    "2": {
+      "@type": "SoftwareApplication",
+      "identifier": "ReliaGrowR",
+      "name": "ReliaGrowR",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ReliaGrowR"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
+      "identifier": "WeibullR",
+      "name": "WeibullR",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=WeibullR"
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "1619.597KB",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2023",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Paul",
+          "familyName": "Govan"
+        }
+      ],
+      "name": "WeibullR.plotly: Interactive Weibull Probability Plots",
+      "identifier": "10.32614/CRAN.package.WeibullR.plotly",
+      "url": "https://CRAN.R-project.org/package=WeibullR.plotly",
+      "description": "R package version 0.2.0",
+      "@id": "https://doi.org/10.32614/CRAN.package.WeibullR.plotly",
+      "sameAs": "https://doi.org/10.32614/CRAN.package.WeibullR.plotly"
+    }
+  ],
+  "releaseNotes": "https://github.com/paulgovan/WeibullR.plotly/blob/main/NEWS.md",
+  "readme": "https://github.com/paulgovan/WeibullR.plotly/blob/main/ReadMe.md",
+  "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html#experimental",
+  "keywords": ["life-data-analysis", "plotly", "r", "weibull-analysis"]
+}

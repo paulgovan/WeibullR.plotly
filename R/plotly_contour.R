@@ -6,7 +6,8 @@
 #' `method.conf = 'lrb'`. The function overlays all contours in a single plot and displays
 #' their respective MLE point estimates.
 #'
-#' @param wblr_obj A single `wblr` object or a list of `wblr` objects.
+#' @param wblr_obj A single `wblr` object or a list of `wblr` objects. Each object
+#' must have contours generated using `method.conf = 'lrb'`.
 #' @param main Main title for the plot.
 #' @param xlab X-axis label (typically Eta or Sigmalog).
 #' @param ylab Y-axis label (typically Beta or Mulog).
@@ -15,7 +16,7 @@
 #'   colors are chosen from a default palette.
 #' @param gridCol Color of the grid lines (default 'lightgray').
 #' @param signif Number of significant digits to display for estimates and contour coordinates.
-#'
+#' Defaults to 3.
 #' @return A `plotly` object representing the interactive contour plot.
 #'
 #' @examples

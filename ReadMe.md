@@ -3,16 +3,17 @@
 
 <!-- badges: start -->
 
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/WeibullR.plotly)](https://CRAN.R-project.org/package=WeibullR.plotly)
-[![CRAN
-checks](https://badges.cranchecks.info/summary/WeibullR.plotly.svg)](https://cran.r-project.org/web/checks/check_results_WeibullR.plotly.html)
+[![R-CMD-check](https://github.com/paulgovan/WeibullR.plotly/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/paulgovan/WeibullR.plotly/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/paulgovan/WeibullR.plotly/graph/badge.svg)](https://app.codecov.io/gh/paulgovan/WeibullR.plotly)
 [![](http://cranlogs.r-pkg.org/badges/last-month/WeibullR.plotly)](https://cran.r-project.org/package=WeibullR.plotly)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/WeibullR.plotly)](https://cran.r-project.org/package=WeibullR.plotly)
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![](https://img.shields.io/badge/doi-10.32614/CRAN.package.WeibullR.plotly-green.svg)](https://doi.org/10.32614/CRAN.package.WeibullR.plotly)
-
 <!-- badges: end -->
 
 Build interactive Weibull Probability Plots with `WeibullR`, an R
@@ -84,8 +85,8 @@ By contributing to this project, you agree to abide by its terms.
 
 # More Resources
 
-[WeibullR.learnr](https://paulgovan.github.io/WeibullR.learnr/) - an
-interactive introduction to Life Data Analysis
+[ReliaLearnR](https://paulgovan.github.io/ReliaLearnR/) - Learning
+modules for Reliability Analysis
 
 [WeibullR.shiny](https://paulgovan.github.io/WeibullR.shiny/) - a shiny
 app for Weibull Analysis

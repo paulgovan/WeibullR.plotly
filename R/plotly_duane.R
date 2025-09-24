@@ -1,21 +1,24 @@
 #' Interactive Duane Plot.
 #'
-#' This function creates an interactive Duane plot for a duane object.
+#' This function creates an interactive Duane plot for a duane object. The plot
+#' includes options to customize the appearance, such as colors and grid visibility.
 #'
-#' @param duane_obj An object of class 'duane'.
-#' @param showGrid Show grid (TRUE) or hide grid (FALSE).
-#' @param main Main title.
-#' @param xlab X-axis label.
-#' @param ylab Y-axis label.
-#' @param pointCol Color of the point values.
-#' @param fitCol Color of the model fit.
-#' @param gridCol Color of the grid.
-#' @return The function returns no value.
+#'
+#' @param duane_obj An object of class 'duane'. This object is created
+#' using the `duane` function from the ReliaGrowR package.
+#' @param showGrid Show grid (TRUE) or hide grid (FALSE). Default is TRUE.
+#' @param main Main title. Default is "Duane Plot".
+#' @param xlab X-axis label. Default is "Cumulative Time".
+#' @param ylab Y-axis label. Default is "Cumulative MTBF".
+#' @param pointCol Color of the point values. Default is "black".
+#' @param fitCol Color of the model fit. Default is "black".
+#' @param gridCol Color of the grid. Default is "lightgray".
+#' @return The function returns no value. It generates an interactive Duane plot.
 #' @examples
 #' library(ReliaGrowR)
 #' times<-c(100, 200, 300, 400, 500)
 #' failures<-c(1, 2, 1, 3, 2)
-#' fit<-duane_plot(times, failures)
+#' fit<-duane(times, failures)
 #' plotly_duane(fit)
 #' @import ReliaGrowR plotly
 #' @importFrom graphics text
